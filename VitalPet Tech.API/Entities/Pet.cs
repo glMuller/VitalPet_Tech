@@ -23,14 +23,19 @@ public class Pet
     public DateTime DataNascimento { get; set; }
     
     [Required(ErrorMessage = "O peso do pet é obrigatório.")]
-    [MaxLength(3,ErrorMessage = "O peso do pet não pode ultrapassar 3 caracteres (digite apenas números).")]
+    [Range(0.1,100,ErrorMessage = "O peso do pet não pode ultrapassar 3 caracteres (digite apenas números).")]
     [Column("peso_pet")]
-    public string PesoPet { get; set; }
+    public Double PesoPet { get; set; }
     
     [Required(ErrorMessage = "A espécie do animal é obrigatória.")]
     [MaxLength(50,ErrorMessage = "A espécie do animal não pode ultrapassar 50 caracteres")]
     [Column("especie_pet")]
     public string EspeciePet { get; set; }
     
-    
+    //chave estrangeira de tutor
+    [Required(ErrorMessage = "ID de tutor obrigatório.")]
+    [Column("id_tutor")]
+    public int IdTutor { get; set; }
+    [ForeignKey("IdTutor")]
+    public Tutor? Tutor { get; set; }
 }
