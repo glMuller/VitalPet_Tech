@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VitalPet Tech.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2175937a9c0efe5962aa0903be80c4f612dceff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00a9c7ef829c30ebad493a4d03e87b502d670f9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("VitalPet Tech.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VitalPet Tech.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
