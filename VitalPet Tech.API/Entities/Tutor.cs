@@ -31,5 +31,7 @@ public class Tutor
     [MaxLength(200, ErrorMessage = "O endereço deve conter no máximo 200 caracteres.")]
     [Column("endereco_tutor")]
     public string EnderecoTutor { get; set; } = string.Empty;
+    
+    public ICollection<Pet> Pets { get; set; } = new List<Pet>();
 }
 
