@@ -141,3 +141,5 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPet Tech.API.xml
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\obj\Debug\net8.0\VitalPet Tech.API.xml
