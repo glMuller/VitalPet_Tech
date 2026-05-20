@@ -20,6 +20,7 @@ public class ApplicationContext : DbContext
     {
         modelBuilder.Entity<Alerta>()
             .Property(a => a.Resolvido)
-            .HasColumnType("NUMBER(1)");
+            .HasColumnType("NUMBER(1)")
+            .HasConversion<int>();
     }
 }

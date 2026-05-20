@@ -61,7 +61,7 @@ public class AlertaController : ControllerBase
     {
         var alertasPendentes = await _context.Alerta
             .Include(a => a.Pet)
-            .Where(a => a.Resolvido == false)
+            .Where(a => !a.Resolvido)
             .OrderByDescending(a => a.Timestamp) // Traz os mais recentes primeiro
             .ToListAsync();
 
