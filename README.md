@@ -3,6 +3,11 @@
 ## 📖 Descrição do Projeto
 A **VitalPet Tech API** é um sistema back-end desenvolvido em C# com .NET e Entity Framework Core. O projeto tem como objetivo gerenciar a saúde e o monitoramento de pets. Ele permite o cadastro de tutores e seus animais, o registro de histórico médico (eventos clínicos como vacinas e consultas) e a recepção de alertas gerados por sensores IoT (monitoramento de batimento cardíaco, temperatura e localização do animal).
 
+Projeto desenvolvido por:
+Gabriel Müller RM561995
+Jonas Santos RM563234
+Pedro Ferreira RM565824
+
 ---
 
 ## 🛠️ Instruções de Instalação e Execução
@@ -15,7 +20,7 @@ A **VitalPet Tech API** é um sistema back-end desenvolvido em C# com .NET e Ent
 ### Passo a passo para rodar o projeto
 
 1. **Clone o repositório:**
-   git clone https://github.com/glMuller/VitalPet-Tech.git
+   git clone https://github.com/glMuller/VitalPet_Tech.git
 
 2. **Configure o Banco de Dados:**
    Abra o arquivo `appsettings.json` e configure a sua string de conexão na chave `ConnectionStrings:ConexaoBanco` (RM561995 - 200107 apontando para o seu servidor local.
