@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,8 @@
         <RootNamespace>VitalPet_Tech.API</RootNamespace>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>
-    </PropertyGroup>
+      <UserSecretsId>2f3d4ba7-f6e5-4e77-9ff1-2f33d6c7c2f8</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="AspNetCore.HealthChecks.Oracle" Version="8.0.1" />

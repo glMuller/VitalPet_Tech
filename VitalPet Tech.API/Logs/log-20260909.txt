@@ -1,0 +1,39 @@
+2026-09-09 21:54:17.235 -03:00 [INF] Now listening on: http://localhost:5240
+2026-09-09 21:54:17.415 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-09-09 21:54:17.425 -03:00 [INF] Hosting environment: Development
+2026-09-09 21:54:17.431 -03:00 [INF] Content root path: C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API
+2026-09-09 21:54:17.439 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/ - null null
+2026-09-09 21:54:17.729 -03:00 [INF] HTTP GET / responded 404 in 2.9002 ms
+2026-09-09 21:54:17.759 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/ - 404 0 null 403.7203ms
+2026-09-09 21:54:17.784 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/, Response status code: 404
+2026-09-09 21:54:24.238 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html - null null
+2026-09-09 21:54:24.579 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html - 304 null null 343.2838ms
+2026-09-09 21:54:24.609 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - null null
+2026-09-09 21:54:24.610 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.css - null null
+2026-09-09 21:54:24.610 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - null null
+2026-09-09 21:54:24.660 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - 304 null null 51.3741ms
+2026-09-09 21:54:24.660 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.css - 304 null null 50.4553ms
+2026-09-09 21:54:24.660 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - 304 null null 50.9571ms
+2026-09-09 21:54:24.700 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.js - null null
+2026-09-09 21:54:24.715 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - null null
+2026-09-09 21:54:24.721 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.js - 304 null null 21.688ms
+2026-09-09 21:54:24.734 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - 304 null null 19.8268ms
+2026-09-09 21:54:24.892 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-09-09 21:54:25.421 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 528.5451ms
+2026-09-09 21:54:42.390 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/api/EventoClinico - null null
+2026-09-09 21:54:42.416 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API)'
+2026-09-09 21:54:42.484 -03:00 [INF] Route matched with {action = "GetAll", controller = "EventoClinico"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VitalPet_Tech.Entites.EventoClinico]]] GetAll() on controller VitalPet_Tech.Controllers.EventoClinicoController (VitalPet Tech.API).
+2026-09-09 21:54:42.898 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-09-09 21:54:46.774 -03:00 [INF] Executed DbCommand (270ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT "e"."id_evento", "e"."clinica", "e"."data_evento", "e"."descricao", "e"."id_pet", "e"."proximo_retorno", "e"."tipo_evento", "p"."id_pet", "p"."data_nascimento", "p"."especie_pet", "p"."id_tutor", "p"."nome_pet", "p"."peso_pet"
+FROM "Evento_Clinico" "e"
+INNER JOIN "Pets" "p" ON "e"."id_pet" = "p"."id_pet"
+2026-09-09 21:54:47.103 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 4190.7998ms.
+2026-09-09 21:54:47.145 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VitalPet_Tech.Entites.EventoClinico, VitalPet Tech.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-09-09 21:54:47.354 -03:00 [INF] Executed action VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API) in 4850.1867ms
+2026-09-09 21:54:47.363 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API)'
+2026-09-09 21:54:47.370 -03:00 [INF] HTTP GET /api/EventoClinico responded 200 in 4957.6107 ms
+2026-09-09 21:54:47.422 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/api/EventoClinico - 200 null application/json; charset=utf-8 5032.2119ms
+2026-09-09 22:32:41.477 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-09-09 22:32:42.005 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 595.9669ms
+2026-09-09 22:58:44.749 -03:00 [INF] Application is shutting down...

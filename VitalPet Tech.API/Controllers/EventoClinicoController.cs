@@ -58,7 +58,7 @@ public class EventoClinicoController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<EventoClinico>>> GetByPet(int petId)
-    {
+    { 
         var eventos = await _context.EventoClinico
             .Include(e => e.Pet)
             .Where(e => e.IdPet == petId)

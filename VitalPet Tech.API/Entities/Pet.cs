@@ -1,8 +1,9 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace VitalPet_Tech.Entites;
-
 
 [Table("Pets")]
 public class Pet
@@ -16,26 +17,28 @@ public class Pet
     [MaxLength(100, ErrorMessage = "O nome do pet não pode ultrapassar 100 caracteres")]
     [Column("nome_pet")]
     public string Nome { get; set; }
-    
+
     [Required(ErrorMessage = "A data de nascimento do pet é obrigatória.")]
     [DataType(DataType.Date)]
     [Column("data_nascimento")]
     public DateTime DataNascimento { get; set; }
-    
+
     [Required(ErrorMessage = "O peso do pet é obrigatório.")]
-    [Range(0.1,100,ErrorMessage = "O peso do pet não pode ultrapassar 3 caracteres (digite apenas números).")]
+    [Range(0.1, 100, ErrorMessage = "O peso do pet não pode ultrapassar 3 caracteres (digite apenas números).")]
     [Column("peso_pet")]
     public Double PesoPet { get; set; }
-    
+
     [Required(ErrorMessage = "A espécie do animal é obrigatória.")]
-    [MaxLength(50,ErrorMessage = "A espécie do animal não pode ultrapassar 50 caracteres")]
+    [MaxLength(50, ErrorMessage = "A espécie do animal não pode ultrapassar 50 caracteres")]
     [Column("especie_pet")]
     public string EspeciePet { get; set; }
-    
-    //chave estrangeira de tutor
+
     [Required(ErrorMessage = "ID de tutor obrigatório.")]
     [Column("id_tutor")]
     public int IdTutor { get; set; }
+
     [ForeignKey("IdTutor")]
+    [ReadOnly(true)] // >>> NOVO
+    [BindNever]      // >>> NOVO
     public Tutor? Tutor { get; set; }
 }

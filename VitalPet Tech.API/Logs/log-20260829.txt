@@ -1,0 +1,17 @@
+2026-08-29 20:50:01.680 -03:00 [INF] Now listening on: http://localhost:5240
+2026-08-29 20:50:01.711 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-29 20:50:01.713 -03:00 [INF] Hosting environment: Development
+2026-08-29 20:50:01.713 -03:00 [INF] Content root path: C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API
+2026-08-29 20:50:06.871 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/ - null null
+2026-08-29 20:50:06.984 -03:00 [INF] HTTP GET / responded 404 in 1.3414 ms
+2026-08-29 20:50:07.001 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/ - 404 0 null 132.6795ms
+2026-08-29 20:50:07.014 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/, Response status code: 404
+2026-08-29 20:50:14.892 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/health - null null
+2026-08-29 20:50:14.903 -03:00 [INF] Executing endpoint 'Health checks'
+2026-08-29 20:50:15.737 -03:00 [INF] Executed endpoint 'Health checks'
+2026-08-29 20:50:15.740 -03:00 [INF] HTTP GET /health responded 200 in 838.2428 ms
+2026-08-29 20:50:15.744 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/health - 200 null application/json 852.7169ms
+2026-08-29 20:50:15.826 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/favicon.ico - null null
+2026-08-29 20:50:15.832 -03:00 [INF] HTTP GET /favicon.ico responded 404 in 0.0492 ms
+2026-08-29 20:50:15.835 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/favicon.ico - 404 0 null 8.0767ms
+2026-08-29 20:50:15.838 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/favicon.ico, Response status code: 404

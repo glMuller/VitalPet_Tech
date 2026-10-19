@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("2f3d4ba7-f6e5-4e77-9ff1-2f33d6c7c2f8")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("VitalPet Tech.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd6f4baf80e6bfac4aeb36b44bad6552920ff390")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73ff6fd4944ef91b5cfd1dd76b68ed9b54ab1298")]
 [assembly: System.Reflection.AssemblyProductAttribute("VitalPet Tech.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VitalPet Tech.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

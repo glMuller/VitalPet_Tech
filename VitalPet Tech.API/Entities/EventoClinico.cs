@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace VitalPet_Tech.Entites;
 
@@ -14,16 +16,13 @@ public enum TipoEvento
 }
 
 [Table("Evento_Clinico")]
-
-
 public class EventoClinico
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("id_evento")]
     public int Id { get; set; }
-    
-    
+
     [Column("tipo_evento")]
     public TipoEvento Tipo { get; set; }
 
@@ -42,15 +41,16 @@ public class EventoClinico
     [Column("descricao")]
     public string Descricao { get; set; }
 
-    //nem todo evento necessita de retorno
     [DataType(DataType.Date)]
     [Column("proximo_retorno")]
     public DateTime? ProximoRetorno { get; set; }
-    
+
     [Required(ErrorMessage = "O ID do pet é obrigatório.")]
     [Column("id_pet")]
     public int IdPet { get; set; }
 
     [ForeignKey("IdPet")]
+    [ReadOnly(true)] // >>> NOVO
+    [BindNever]      // >>> NOVO
     public Pet? Pet { get; set; }
 }
