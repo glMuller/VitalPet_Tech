@@ -152,3 +152,9 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Serilog.Sinks.Console.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Application.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Domain.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Infrastructure.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Application.pdb
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Infrastructure.pdb
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Domain.pdb

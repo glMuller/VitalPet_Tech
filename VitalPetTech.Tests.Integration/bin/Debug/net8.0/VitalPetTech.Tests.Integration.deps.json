@@ -2430,7 +2430,9 @@
           "Serilog.AspNetCore": "10.0.0",
           "Serilog.Sinks.Console": "6.1.1",
           "Serilog.Sinks.File": "7.0.0",
-          "Swashbuckle.AspNetCore": "10.1.7"
+          "Swashbuckle.AspNetCore": "10.1.7",
+          "VitalPetTech.Application": "1.0.0",
+          "VitalPetTech.Infrastructure": "1.0.0"
         },
         "runtime": {
           "VitalPet Tech.API.dll": {
@@ -2440,6 +2442,48 @@
         },
         "compile": {
           "VitalPet Tech.API.dll": {}
+        }
+      },
+      "VitalPetTech.Application/1.0.0": {
+        "dependencies": {
+          "VitalPetTech.Domain": "1.0.0"
+        },
+        "runtime": {
+          "VitalPetTech.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "VitalPetTech.Application.dll": {}
+        }
+      },
+      "VitalPetTech.Domain/1.0.0": {
+        "runtime": {
+          "VitalPetTech.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "VitalPetTech.Domain.dll": {}
+        }
+      },
+      "VitalPetTech.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.10",
+          "Oracle.EntityFrameworkCore": "8.23.60",
+          "VitalPetTech.Application": "1.0.0",
+          "VitalPetTech.Domain": "1.0.0"
+        },
+        "runtime": {
+          "VitalPetTech.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "VitalPetTech.Infrastructure.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/8.0.0.0": {
@@ -5316,6 +5360,21 @@
       "hashPath": "xunit.runner.visualstudio.2.5.3.nupkg.sha512"
     },
     "VitalPet Tech.API/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VitalPetTech.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VitalPetTech.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VitalPetTech.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

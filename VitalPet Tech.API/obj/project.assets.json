@@ -1665,6 +1665,45 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "VitalPetTech.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "VitalPetTech.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/VitalPetTech.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VitalPetTech.Application.dll": {}
+        }
+      },
+      "VitalPetTech.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/VitalPetTech.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VitalPetTech.Domain.dll": {}
+        }
+      },
+      "VitalPetTech.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.10",
+          "Oracle.EntityFrameworkCore": "8.23.60",
+          "VitalPetTech.Application": "1.0.0",
+          "VitalPetTech.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/VitalPetTech.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VitalPetTech.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -4239,6 +4278,21 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "VitalPetTech.Application/1.0.0": {
+      "type": "project",
+      "path": "../VitalPetTech.Application/VitalPetTech.Application.csproj",
+      "msbuildProject": "../VitalPetTech.Application/VitalPetTech.Application.csproj"
+    },
+    "VitalPetTech.Domain/1.0.0": {
+      "type": "project",
+      "path": "../VitalPetTech.Domain/VitalPetTech.Domain.csproj",
+      "msbuildProject": "../VitalPetTech.Domain/VitalPetTech.Domain.csproj"
+    },
+    "VitalPetTech.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../VitalPetTech.Infrastructure/VitalPetTech.Infrastructure.csproj",
+      "msbuildProject": "../VitalPetTech.Infrastructure/VitalPetTech.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4255,7 +4309,9 @@
       "Serilog.AspNetCore >= 10.0.0",
       "Serilog.Sinks.Console >= 6.1.1",
       "Serilog.Sinks.File >= 7.0.0",
-      "Swashbuckle.AspNetCore >= 10.1.7"
+      "Swashbuckle.AspNetCore >= 10.1.7",
+      "VitalPetTech.Application >= 1.0.0",
+      "VitalPetTech.Infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4282,7 +4338,14 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\estudos\\Fiap\\.NET\\Challenge\\Sprint 1 e 2\\VitalPet Tech\\VitalPetTech.Application\\VitalPetTech.Application.csproj": {
+              "projectPath": "C:\\estudos\\Fiap\\.NET\\Challenge\\Sprint 1 e 2\\VitalPet Tech\\VitalPetTech.Application\\VitalPetTech.Application.csproj"
+            },
+            "C:\\estudos\\Fiap\\.NET\\Challenge\\Sprint 1 e 2\\VitalPet Tech\\VitalPetTech.Infrastructure\\VitalPetTech.Infrastructure.csproj": {
+              "projectPath": "C:\\estudos\\Fiap\\.NET\\Challenge\\Sprint 1 e 2\\VitalPet Tech\\VitalPetTech.Infrastructure\\VitalPetTech.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

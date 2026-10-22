@@ -167,3 +167,9 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Uni
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Text.Json.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Application.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Domain.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Infrastructure.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Application.pdb
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Domain.pdb
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Infrastructure.pdb
