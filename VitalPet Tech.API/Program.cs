@@ -1,15 +1,17 @@
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using VitalPet_Tech.API.Data;
-using Serilog;                                              // >>> NOVO
-using HealthChecks.UI.Client;                                // >>> NOVO
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;         // >>> NOVO
-using OpenTelemetry.Metrics;                                 // >>> NOVO
-using OpenTelemetry.Trace;                                   // >>> NOVO
+using System.Text.Json.Serialization;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
+using Serilog;
+using VitalPet_Tech.API.Handlers;
+using VitalPetTech.Application;
+using VitalPetTech.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// >>> NOVO: Logging estruturado com Serilog
+// Logging estruturado
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .Enrich.FromLogContext()
@@ -17,17 +19,23 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
-builder.Host.UseSerilog(); // substitui o logger padrão do ASP.NET pelo Serilog
-// <<< FIM NOVO
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options => {
-        options.JsonSerializerOptions.ReferenceHandler = 
-            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
-builder.Services.AddEndpointsApiExplorer(); 
-builder.Services.AddSwaggerGen(c => {
-    c.SwaggerDoc("v1", new() {
+
+// Tratamento global de exceções
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new()
+    {
         Title = "VitalPet Tech API",
         Version = "v1",
         Description = "API de saúde contínua do pet — FIAP Challenge 2026"
@@ -37,47 +45,53 @@ builder.Services.AddSwaggerGen(c => {
     c.IncludeXmlComments(xmlPath);
 });
 
-builder.Services.AddDbContext<ApplicationContext>(options =>
-    options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
+// Camadas da Clean Architecture
+var connectionString = builder.Configuration.GetConnectionString("OracleConnection")
+    ?? throw new InvalidOperationException("A connection string 'OracleConnection' não foi configurada.");
 
-// >>> NOVO: Health Checks
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(connectionString);
+
+// Health Checks
 builder.Services.AddHealthChecks()
     .AddOracle(
-        connectionString: builder.Configuration.GetConnectionString("OracleConnection")!,
+        connectionString: connectionString,
         name: "oracle-database",
         failureStatus: Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy,
         tags: new[] { "db", "oracle" });
-// <<< FIM NOVO
 
-// >>> NOVO: OpenTelemetry (tracing + métricas)
+// OpenTelemetry (tracing + métricas)
+// Se você instalou o pacote OpenTelemetry.Instrumentation.Runtime, mantenha o AddRuntimeInstrumentation()
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing
         .AddSource("VitalPet_Tech.API")
         .AddAspNetCoreInstrumentation()
         .AddHttpClientInstrumentation()
+        .AddConsoleExporter())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
         .AddConsoleExporter());
-   
-// <<< FIM NOVO
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(); 
-    app.UseSwaggerUI(); 
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-app.UseSerilogRequestLogging(); // >>> NOVO: loga cada requisição HTTP (método, path, status, tempo)
+app.UseSerilogRequestLogging();
 
 app.MapControllers();
 
-// >>> NOVO: endpoint /health
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
-// <<< FIM NOVO
 
 app.Run();
 
-public partial class Program { } // >>> NOVO: necessário para o WebApplicationFactory nos testes de integração
+public partial class Program { } // necessário para o WebApplicationFactory nos testes de integração

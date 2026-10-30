@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using VitalPet_Tech.API.Data;
-using VitalPet_Tech.Entites;
+using VitalPetTech.Application.DTOs;
+using VitalPetTech.Application.Interfaces;
+using VitalPetTech.Domain.Common;
 
 namespace VitalPet_Tech.Controllers;
 
@@ -10,60 +10,40 @@ namespace VitalPet_Tech.Controllers;
 [Produces("application/json")]
 public class TutorController : ControllerBase
 {
-    private readonly ApplicationContext _context;
+    private readonly ITutorService _service;
 
-    public TutorController(ApplicationContext context)
+    public TutorController(ITutorService service)
     {
-        _context = context;
+        _service = service;
     }
 
     /// <summary>
-    /// Retorna todos os tutores e seus respectivos pets.
+    /// Lista tutores com paginação, ordenação (id, nome) e filtro por nome.
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Tutor>>> GetAll()
-    {
-        var tutores = await _context.Tutor
-            .Include(t => t.Pets) // Traz os pets de todos os tutores
-            .ToListAsync();
-            
-        return Ok(tutores);
-    }
+    [ProducesResponseType(typeof(PagedResult<TutorResponse>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PagedResult<TutorResponse>>> GetAll([FromQuery] TutorFilter filter)
+        => Ok(await _service.GetPagedAsync(filter));
 
     /// <summary>
-    /// Retorna um tutor pelo ID e traz a lista de pets dele.
+    /// Retorna um tutor pelo ID, com o resumo dos seus pets.
     /// </summary>
     [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TutorResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<Tutor>> GetById(int id)
-    {
-        var tutor = await _context.Tutor
-            .Include(t => t.Pets) // Traz os pets específicos desse tutor
-            .FirstOrDefaultAsync(t => t.Id == id);
-
-        if (tutor == null)
-            return NotFound("Tutor não encontrado.");
-
-        return Ok(tutor);
-    }
+    public async Task<ActionResult<TutorResponse>> GetById(int id)
+        => Ok(await _service.GetByIdAsync(id));
 
     /// <summary>
     /// Cria um novo tutor.
     /// </summary>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(TutorResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Tutor>> Create(Tutor tutor)
+    public async Task<ActionResult<TutorResponse>> Create(TutorRequest request)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        _context.Tutor.Add(tutor);
-        await _context.SaveChangesAsync();
-        
-        return CreatedAtAction(nameof(GetById), new { id = tutor.Id }, tutor);
+        var created = await _service.CreateAsync(request);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
     /// <summary>
@@ -73,47 +53,21 @@ public class TutorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Update(int id, Tutor tutor)
+    public async Task<IActionResult> Update(int id, TutorRequest request)
     {
-        if (id != tutor.Id)
-            return BadRequest("O ID da URL é diferente do ID do corpo da requisição.");
-
-        _context.Entry(tutor).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!TutorExists(id))
-                return NotFound("Tutor não encontrado para atualização.");
-            else
-                throw;
-        }
-
+        await _service.UpdateAsync(id, request);
         return NoContent();
     }
 
     /// <summary>
-    /// Remove um tutor pelo ID informado.
+    /// Remove um tutor (e, em cascata, seus pets, eventos e alertas).
     /// </summary>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id)
     {
-        var tutor = await _context.Tutor.FindAsync(id);
-        if (tutor == null)
-            return NotFound("Tutor não encontrado.");
-
-        _context.Tutor.Remove(tutor);
-        await _context.SaveChangesAsync();
+        await _service.DeleteAsync(id);
         return NoContent();
-    }
-
-    private bool TutorExists(int id)
-    {
-        return _context.Tutor.Any(e => e.Id == id);
     }
 }
