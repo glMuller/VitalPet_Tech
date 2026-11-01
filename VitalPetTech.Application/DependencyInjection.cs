@@ -13,6 +13,7 @@ public static class DependencyInjection
         services.AddScoped<IEventoClinicoService, EventoClinicoService>();
         services.AddScoped<IAlertaService, AlertaService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<ILeituraSensorService, LeituraSensorService>();
         return services;
     }
 }

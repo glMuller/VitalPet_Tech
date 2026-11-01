@@ -13,6 +13,8 @@ using VitalPet_Tech.API.Handlers;
 using VitalPetTech.Application;
 using VitalPetTech.Infrastructure;
 using VitalPetTech.Infrastructure.Auth;
+using VitalPet_Tech.API.Health;
+using VitalPetTech.Infrastructure.Mongo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,7 +98,13 @@ var connectionString = builder.Configuration.GetConnectionString("OracleConnecti
     ?? throw new InvalidOperationException("A connection string 'OracleConnection' não foi configurada.");
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure(connectionString, jwt);
+var mongo = builder.Configuration.GetSection("Mongo").Get<MongoSettings>() ?? new MongoSettings();
+if (string.IsNullOrWhiteSpace(mongo.ConnectionString))
+    throw new InvalidOperationException(
+        "Configure 'Mongo:ConnectionString' (dotnet user-secrets ou variável de ambiente Mongo__ConnectionString).");
+
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(connectionString, jwt, mongo);
 
 // Health Checks
 builder.Services.AddHealthChecks()
@@ -104,7 +112,11 @@ builder.Services.AddHealthChecks()
         connectionString: connectionString,
         name: "oracle-database",
         failureStatus: Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy,
-        tags: new[] { "db", "oracle" });
+        tags: new[] { "db", "oracle" })
+    .AddCheck<MongoHealthCheck>(
+        name: "mongodb",
+        failureStatus: Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy,
+        tags: new[] { "db", "mongodb" });
 
 // OpenTelemetry (tracing + métricas)
 builder.Services.AddOpenTelemetry()

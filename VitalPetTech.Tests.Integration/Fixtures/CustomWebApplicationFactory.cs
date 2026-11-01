@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using VitalPetTech.Application.Interfaces;
 using VitalPetTech.Domain.Entities;
 using VitalPetTech.Infrastructure.Data;
+using VitalPetTech.Domain.Interfaces;
+using VitalPetTech.Tests.Integration.Helpers;
 
 namespace VitalPetTech.Tests.Integration.Fixtures;
 
@@ -24,6 +26,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         Environment.SetEnvironmentVariable("Jwt__Audience", "VitalPetTech.Tests.Clients");
         Environment.SetEnvironmentVariable("ConnectionStrings__OracleConnection",
             "Data Source=localhost:1521/FAKE;User Id=teste;Password=teste;");
+        Environment.SetEnvironmentVariable("Mongo__ConnectionString", "mongodb://localhost:27017");
+        Environment.SetEnvironmentVariable("Mongo__DatabaseName", "vitalpet_tests");
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -37,6 +41,10 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseInMemoryDatabase("VitalPetTestDb"));
+            var mongoRepo = services.SingleOrDefault(d => d.ServiceType == typeof(ILeituraSensorRepository));
+            if (mongoRepo != null)
+                services.Remove(mongoRepo);
+            services.AddSingleton<ILeituraSensorRepository, FakeLeituraSensorRepository>();
         });
     }
 

@@ -46,6 +46,22 @@
             Remove um evento clínico pelo ID.
             </summary>
         </member>
+        <member name="M:VitalPet_Tech.Controllers.LeituraSensorController.GetAll(VitalPetTech.Domain.Common.LeituraSensorFilter)">
+            <summary>
+            Lista leituras dos sensores (MongoDB) com paginação, ordenação (timestamp, valor, tipo)
+            e filtros por pet, tipo e período. Por padrão, da mais recente para a mais antiga.
+            </summary>
+        </member>
+        <member name="M:VitalPet_Tech.Controllers.LeituraSensorController.GetById(System.String)">
+            <summary>
+            Retorna uma leitura pelo ID.
+            </summary>
+        </member>
+        <member name="M:VitalPet_Tech.Controllers.LeituraSensorController.Create(VitalPetTech.Application.DTOs.LeituraSensorRequest)">
+            <summary>
+            Registra uma leitura de sensor IoT. O pet informado precisa existir.
+            </summary>
+        </member>
         <member name="M:VitalPet_Tech.Controllers.PetController.GetAll(VitalPetTech.Domain.Common.PetFilter)">
             <summary>
             Lista pets com paginação, ordenação (id, nome, especie, peso, dataNascimento)

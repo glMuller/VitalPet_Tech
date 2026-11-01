@@ -24,3 +24,10 @@ public class AlertaFilter : PagedQuery
     public Entities.Severidade? Severidade { get; set; }
     public Entities.TipoAlerta? TipoAlerta { get; set; }
 }
+public class LeituraSensorFilter : PagedQuery
+{
+    public int? PetId { get; set; }
+    public Entities.TipoAlerta? Tipo { get; set; }
+    public DateTime? De { get; set; }
+    public DateTime? Ate { get; set; }
+}

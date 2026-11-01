@@ -318,6 +318,10 @@
               "target": "Package",
               "version": "[8.0.10, )"
             },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            },
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.23.60, )"

@@ -94,4 +94,17 @@ public static class MappingExtensions
         a.Timestamp = r.Timestamp!.Value;
         a.IdPet = r.IdPet;
     }
+    // ---------- LeituraSensor ----------
+    public static LeituraSensorResponse ToResponse(this LeituraSensor l) =>
+        new(l.Id, l.IdPet, l.Tipo, l.Valor, l.Latitude, l.Longitude, l.Timestamp);
+
+    public static LeituraSensor ToEntity(this LeituraSensorRequest r) => new()
+    {
+        IdPet = r.IdPet,
+        Tipo = r.Tipo,
+        Valor = r.Valor,
+        Latitude = r.Latitude,
+        Longitude = r.Longitude,
+        Timestamp = r.Timestamp!.Value
+    };
 }
