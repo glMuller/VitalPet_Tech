@@ -44,3 +44,29 @@ ORDER BY "t"."nome_pet"
 2026-11-01 15:13:48.876 -03:00 [INF] HTTP GET /api/Pet responded 200 in 2504.3942 ms
 2026-11-01 15:13:48.887 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/api/Pet - 200 null application/json; charset=utf-8 2526.3558ms
 2026-11-01 15:41:57.716 -03:00 [INF] Application is shutting down...
+2026-11-01 19:44:09.445 -03:00 [INF] User profile is available. Using 'C:\Users\glmul\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-11-01 19:44:09.710 -03:00 [INF] Now listening on: http://localhost:5240
+2026-11-01 19:44:09.714 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-11-01 19:44:09.716 -03:00 [INF] Hosting environment: Development
+2026-11-01 19:44:09.717 -03:00 [INF] Content root path: C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API
+2026-11-01 19:44:35.556 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/ - null null
+2026-11-01 19:44:38.228 -03:00 [INF] HTTP GET / responded 404 in 2474.0099 ms
+2026-11-01 19:44:38.246 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/ - 404 0 null 2754.0032ms
+2026-11-01 19:44:38.265 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/, Response status code: 404
+2026-11-01 19:44:49.566 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html - null null
+2026-11-01 19:44:49.802 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html - 304 null null 242.2541ms
+2026-11-01 19:44:49.837 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.css - null null
+2026-11-01 19:44:49.837 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - null null
+2026-11-01 19:44:49.842 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - null null
+2026-11-01 19:44:49.885 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.css - 304 null null 47.6063ms
+2026-11-01 19:44:49.885 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - 304 null null 47.8251ms
+2026-11-01 19:44:49.888 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - 304 null null 46.682ms
+2026-11-01 19:44:49.911 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - null null
+2026-11-01 19:44:49.919 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.js - null null
+2026-11-01 19:44:49.921 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - 304 null null 10.1374ms
+2026-11-01 19:44:49.926 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.js - 304 null null 6.8977ms
+2026-11-01 19:44:50.232 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-11-01 19:44:50.719 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 486.4577ms
+2026-11-01 19:48:28.022 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-11-01 19:48:28.219 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 218.6001ms
+2026-11-01 19:50:19.054 -03:00 [INF] Application is shutting down...
