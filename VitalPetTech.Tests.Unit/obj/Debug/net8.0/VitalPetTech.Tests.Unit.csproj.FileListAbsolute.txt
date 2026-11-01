@@ -1,10 +1,5 @@
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\CoverletSourceRootsMapping_VitalPetTech.Tests.Unit
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\testhost.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPet Tech.API.deps.json
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPet Tech.API.runtimeconfig.json
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\appsettings.Development.json
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\appsettings.json
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPet Tech.API.exe
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\testhost.exe
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
@@ -27,7 +22,6 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Uni
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.TestPlatform.CoreUtilities.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
@@ -40,11 +34,7 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Uni
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\NuGet.Frameworks.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Oracle.EntityFrameworkCore.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Oracle.ManagedDataAccess.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Diagnostics.PerformanceCounter.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.DirectoryServices.Protocols.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
@@ -121,9 +111,6 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Uni
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\linux\lib\net8.0\System.DirectoryServices.Protocols.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\osx\lib\net8.0\System.DirectoryServices.Protocols.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.DirectoryServices.Protocols.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPet Tech.API.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPet Tech.API.pdb
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPet Tech.API.xml
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\obj\Debug\net8.0\VitalPetTech.Tests.Unit.csproj.AssemblyReference.cache
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\obj\Debug\net8.0\VitalPetTech.Tests.Unit.GeneratedMSBuildEditorConfig.editorconfig
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\obj\Debug\net8.0\VitalPetTech.Tests.Unit.AssemblyInfoInputs.cache
@@ -136,40 +123,15 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Uni
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\obj\Debug\net8.0\VitalPetTech.Tests.Unit.pdb
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\obj\Debug\net8.0\VitalPetTech.Tests.Unit.genruntimeconfig.cache
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\obj\Debug\net8.0\ref\VitalPetTech.Tests.Unit.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\HealthChecks.Oracle.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\HealthChecks.UI.Client.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\HealthChecks.UI.Core.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.Api.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.Api.ProviderBuilderExtensions.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.Exporter.Console.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.Extensions.Hosting.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.Instrumentation.AspNetCore.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\OpenTelemetry.Instrumentation.Http.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.AspNetCore.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Sinks.Console.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Serilog.Sinks.File.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.IO.Pipelines.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Text.Encodings.Web.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Text.Json.dll
-C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Application.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Domain.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Infrastructure.dll
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Application.pdb
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Domain.pdb
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\VitalPetTech.Infrastructure.pdb
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Diagnostics.EventLog.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Tests.Unit\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll

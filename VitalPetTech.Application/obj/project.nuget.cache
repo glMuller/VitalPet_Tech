@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "cQ4vcW90dbM=",
+  "dgSpecHash": "j34prDrS+lk=",
   "success": true,
   "projectFilePath": "C:\\estudos\\Fiap\\.NET\\Challenge\\Sprint 1 e 2\\VitalPet Tech\\VitalPetTech.Application\\VitalPetTech.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\glmul\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\glmul\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

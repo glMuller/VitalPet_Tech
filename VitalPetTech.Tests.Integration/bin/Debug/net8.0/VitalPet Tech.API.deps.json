@@ -1055,6 +1055,8 @@
       "System.Threading.Channels/6.0.0": {},
       "VitalPetTech.Application/1.0.0": {
         "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
           "VitalPetTech.Domain": "1.0.0"
         },
         "runtime": {

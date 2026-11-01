@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VitalPetTech.Tests.Integration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0a0750449974a32624570f48c6da60ae3942abd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07e3b8e274b0a21ae69dfbfd53fb3ea8dfbb079b")]
 [assembly: System.Reflection.AssemblyProductAttribute("VitalPetTech.Tests.Integration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VitalPetTech.Tests.Integration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

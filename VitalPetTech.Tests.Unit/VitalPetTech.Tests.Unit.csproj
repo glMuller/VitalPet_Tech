@@ -23,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VitalPet Tech.API\VitalPet Tech.API.csproj" />
+    <ProjectReference Include="..\VitalPetTech.Domain\VitalPetTech.Domain.csproj" />
+    <ProjectReference Include="..\VitalPetTech.Application\VitalPetTech.Application.csproj" />
+    <ProjectReference Include="..\VitalPetTech.Infrastructure\VitalPetTech.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

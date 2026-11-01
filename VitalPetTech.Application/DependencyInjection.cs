@@ -1,6 +1,17 @@
+using Microsoft.Extensions.DependencyInjection;
+using VitalPetTech.Application.Interfaces;
+using VitalPetTech.Application.Services;
+
 namespace VitalPetTech.Application;
 
-public class DependencyInjection
+public static class DependencyInjection
 {
-    
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        services.AddScoped<ITutorService, TutorService>();
+        services.AddScoped<IPetService, PetService>();
+        services.AddScoped<IEventoClinicoService, EventoClinicoService>();
+        services.AddScoped<IAlertaService, AlertaService>();
+        return services;
+    }
 }
