@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using VitalPetTech.Domain.Entities;
+using VitalPetTech.Application.Hateoas;
 
 namespace VitalPetTech.Application.DTOs;
 
@@ -37,4 +38,4 @@ public record AlertaResponse(
     bool Resolvido,
     DateTime Timestamp,
     int IdPet,
-    string NomePet);
+    string NomePet) :LinkedResource;

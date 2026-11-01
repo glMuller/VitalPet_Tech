@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using VitalPetTech.Application.DTOs;
 using VitalPetTech.Application.Interfaces;
 using VitalPetTech.Domain.Common;
+using VitalPet_Tech.API.Hateoas;
+using VitalPetTech.Application.Hateoas;
 
 namespace VitalPet_Tech.Controllers;
 
@@ -22,31 +24,41 @@ public class PetController : ControllerBase
     /// e filtros por espécie e tutor.
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResult<PetResponse>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PagedResult<PetResponse>>> GetAll([FromQuery] PetFilter filter)
-        => Ok(await _service.GetPagedAsync(filter));
+    [ProducesResponseType(typeof(PagedResponse<PetResponse>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PagedResponse<PetResponse>>> GetAll([FromQuery] PetFilter filter)
+    {
+        var result = await _service.GetPagedAsync(filter);
+        return Ok(this.ToPagedResponse(result, WithLinks));
+    }
 
-    /// <summary>
-    /// Retorna um pet pelo ID.
-    /// </summary>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(PetResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<PetResponse>> GetById(int id)
-        => Ok(await _service.GetByIdAsync(id));
+        => Ok(WithLinks(await _service.GetByIdAsync(id)));
 
-    /// <summary>
-    /// Cria um novo pet. O tutor informado precisa existir.
-    /// </summary>
     [HttpPost]
     [ProducesResponseType(typeof(PetResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult<PetResponse>> Create(PetRequest request)
     {
-        var created = await _service.CreateAsync(request);
+        var created = WithLinks(await _service.CreateAsync(request));
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    private PetResponse WithLinks(PetResponse pet) => pet with
+    {
+        Links = new[]
+        {
+            this.LinkTo("self", "GET", nameof(GetById), values: new { id = pet.Id }),
+            this.LinkTo("update", "PUT", nameof(Update), values: new { id = pet.Id }),
+            this.LinkTo("delete", "DELETE", nameof(Delete), values: new { id = pet.Id }),
+            this.LinkTo("tutor", "GET", "GetById", "Tutor", new { id = pet.IdTutor }),
+            this.LinkTo("eventos-clinicos", "GET", "GetAll", "EventoClinico", new { petId = pet.Id }),
+            this.LinkTo("alertas", "GET", "GetAll", "Alerta", new { petId = pet.Id })
+        }
+    };
 
     /// <summary>
     /// Atualiza os dados de um pet existente.

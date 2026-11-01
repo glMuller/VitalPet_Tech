@@ -10,16 +10,6 @@
             por pet, resolvido, severidade e tipo. Use ?resolvido=false para ver os pendentes.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.GetById(System.Int32)">
-            <summary>
-            Retorna um alerta pelo ID.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.Create(VitalPetTech.Application.DTOs.AlertaRequest)">
-            <summary>
-            Cria um novo alerta (geralmente disparado pelo sensor IoT). Sempre nasce não resolvido.
-            </summary>
-        </member>
         <member name="M:VitalPet_Tech.Controllers.AlertaController.Update(System.Int32,VitalPetTech.Application.DTOs.AlertaUpdateRequest)">
             <summary>
             Atualiza um alerta (ideal para marcar como resolvido).
@@ -34,16 +24,6 @@
             <summary>
             Lista eventos clínicos com paginação, ordenação (data, tipo, clinica, id)
             e filtros por pet e tipo. Por padrão, do mais recente para o mais antigo.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.GetById(System.Int32)">
-            <summary>
-            Retorna um evento clínico pelo ID.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.Create(VitalPetTech.Application.DTOs.EventoClinicoRequest)">
-            <summary>
-            Cria um novo evento clínico. O pet informado precisa existir.
             </summary>
         </member>
         <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.Update(System.Int32,VitalPetTech.Application.DTOs.EventoClinicoRequest)">
@@ -62,16 +42,6 @@
             e filtros por espécie e tutor.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.GetById(System.Int32)">
-            <summary>
-            Retorna um pet pelo ID.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.Create(VitalPetTech.Application.DTOs.PetRequest)">
-            <summary>
-            Cria um novo pet. O tutor informado precisa existir.
-            </summary>
-        </member>
         <member name="M:VitalPet_Tech.Controllers.PetController.Update(System.Int32,VitalPetTech.Application.DTOs.PetRequest)">
             <summary>
             Atualiza os dados de um pet existente.
@@ -85,16 +55,6 @@
         <member name="M:VitalPet_Tech.Controllers.TutorController.GetAll(VitalPetTech.Domain.Common.TutorFilter)">
             <summary>
             Lista tutores com paginação, ordenação (id, nome) e filtro por nome.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.TutorController.GetById(System.Int32)">
-            <summary>
-            Retorna um tutor pelo ID, com o resumo dos seus pets.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.TutorController.Create(VitalPetTech.Application.DTOs.TutorRequest)">
-            <summary>
-            Cria um novo tutor.
             </summary>
         </member>
         <member name="M:VitalPet_Tech.Controllers.TutorController.Update(System.Int32,VitalPetTech.Application.DTOs.TutorRequest)">

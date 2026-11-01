@@ -1,0 +1,818 @@
+2026-11-01 13:27:28.071 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:28.142 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:28.159 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:28.654 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:28.753 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:28.758 -03:00 [INF] Tutor 1 criado.
+2026-11-01 13:27:28.770 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 113.8551ms.
+2026-11-01 13:27:28.775 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:28.792 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 630.1267ms
+2026-11-01 13:27:28.792 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:28.793 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 656.8632 ms
+2026-11-01 13:27:28.797 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 752.179ms
+2026-11-01 13:27:28.817 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:28.819 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:28.822 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:28.848 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.008 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.009 -03:00 [INF] Pet 1 criado para o tutor 1.
+2026-11-01 13:27:29.010 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 161.9189ms.
+2026-11-01 13:27:29.011 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.015 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 192.5746ms
+2026-11-01 13:27:29.015 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.015 -03:00 [INF] HTTP POST /api/Pet responded 201 in 195.9742 ms
+2026-11-01 13:27:29.015 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 198.5193ms
+2026-11-01 13:27:29.031 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Alerta - application/json; charset=utf-8 153
+2026-11-01 13:27:29.032 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.034 -03:00 [INF] Route matched with {action = "Create", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] Create(VitalPetTech.Application.DTOs.AlertaRequest) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.051 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.099 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.100 -03:00 [INF] Alerta 1 ("Atencao") criado para o pet 1.
+2026-11-01 13:27:29.101 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 49.9048ms.
+2026-11-01 13:27:29.101 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.AlertaResponse'.
+2026-11-01 13:27:29.105 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) in 70.9095ms
+2026-11-01 13:27:29.106 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.106 -03:00 [INF] HTTP POST /api/Alerta responded 201 in 73.7866 ms
+2026-11-01 13:27:29.106 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Alerta - 201 null application/json; charset=utf-8 75.3486ms
+2026-11-01 13:27:29.116 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.116 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.116 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.117 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.117 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.117 -03:00 [INF] Tutor 2 criado.
+2026-11-01 13:27:29.118 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5631ms.
+2026-11-01 13:27:29.118 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.118 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.6967ms
+2026-11-01 13:27:29.118 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.118 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 2.0525 ms
+2026-11-01 13:27:29.118 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 2.5151ms
+2026-11-01 13:27:29.119 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:29.119 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.119 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.120 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.122 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.122 -03:00 [INF] Pet 2 criado para o tutor 2.
+2026-11-01 13:27:29.123 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 2.9304ms.
+2026-11-01 13:27:29.123 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.123 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 4.0733ms
+2026-11-01 13:27:29.123 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.123 -03:00 [INF] HTTP POST /api/Pet responded 201 in 4.4602 ms
+2026-11-01 13:27:29.123 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 4.7174ms
+2026-11-01 13:27:29.124 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Alerta - application/json; charset=utf-8 138
+2026-11-01 13:27:29.124 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.124 -03:00 [INF] Route matched with {action = "Create", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] Create(VitalPetTech.Application.DTOs.AlertaRequest) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.125 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.126 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.126 -03:00 [INF] Alerta 2 ("Critico") criado para o pet 2.
+2026-11-01 13:27:29.126 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 1.1603ms.
+2026-11-01 13:27:29.126 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.AlertaResponse'.
+2026-11-01 13:27:29.127 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) in 2.4775ms
+2026-11-01 13:27:29.127 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.127 -03:00 [INF] HTTP POST /api/Alerta responded 201 in 2.8117 ms
+2026-11-01 13:27:29.127 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Alerta - 201 null application/json; charset=utf-8 3.1489ms
+2026-11-01 13:27:29.128 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost/api/Alerta/2 - application/json; charset=utf-8 156
+2026-11-01 13:27:29.128 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API)'
+2026-11-01 13:27:29.131 -03:00 [INF] Route matched with {action = "Update", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VitalPetTech.Application.DTOs.AlertaUpdateRequest) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.136 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.152 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.153 -03:00 [INF] Alerta 2 atualizado (Resolvido: true).
+2026-11-01 13:27:29.153 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.NoContentResult in 17.1549ms.
+2026-11-01 13:27:29.153 -03:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2026-11-01 13:27:29.153 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API) in 22.5487ms
+2026-11-01 13:27:29.154 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API)'
+2026-11-01 13:27:29.154 -03:00 [INF] HTTP PUT /api/Alerta/2 responded 204 in 25.2064 ms
+2026-11-01 13:27:29.154 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost/api/Alerta/2 - 204 null null 25.707ms
+2026-11-01 13:27:29.155 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Alerta?resolvido=true&pageSize=50 - null null
+2026-11-01 13:27:29.157 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.162 -03:00 [INF] Route matched with {action = "GetAll", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.AlertaResponse]]] GetAll(VitalPetTech.Domain.Common.AlertaFilter) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.177 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.206 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 28.5911ms.
+2026-11-01 13:27:29.206 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.AlertaResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.208 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API) in 46.0493ms
+2026-11-01 13:27:29.208 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.208 -03:00 [INF] HTTP GET /api/Alerta responded 200 in 50.7146 ms
+2026-11-01 13:27:29.208 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Alerta?resolvido=true&pageSize=50 - 200 null application/json; charset=utf-8 53.7786ms
+2026-11-01 13:27:29.220 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Alerta/999999 - null null
+2026-11-01 13:27:29.220 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.222 -03:00 [INF] Route matched with {action = "GetById", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.223 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.224 -03:00 [WRN] Alerta com ID 999999 não foi encontrado.
+2026-11-01 13:27:29.226 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API) in 3.1255ms
+2026-11-01 13:27:29.226 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.226 -03:00 [ERR] HTTP GET /api/Alerta/999999 responded 500 in 5.7507 ms
+VitalPetTech.Application.Exceptions.NotFoundException: Alerta não encontrado.
+   at VitalPetTech.Application.Services.AlertaService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\AlertaService.cs:line 79
+   at VitalPetTech.Application.Services.AlertaService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\AlertaService.cs:line 37
+   at VitalPet_Tech.Controllers.AlertaController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\AlertaController.cs:line 38
+   at lambda_method419(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.234 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.NotFoundException: Alerta não encontrado.
+   at VitalPetTech.Application.Services.AlertaService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\AlertaService.cs:line 79
+   at VitalPetTech.Application.Services.AlertaService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\AlertaService.cs:line 37
+   at VitalPet_Tech.Controllers.AlertaController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\AlertaController.cs:line 38
+   at lambda_method419(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.237 -03:00 [WRN] Recurso não encontrado. Alerta não encontrado.
+2026-11-01 13:27:29.255 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Alerta/999999 - 404 null application/json; charset=utf-8 35.7887ms
+2026-11-01 13:27:29.257 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Alerta - null null
+2026-11-01 13:27:29.257 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.257 -03:00 [INF] Route matched with {action = "GetAll", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.AlertaResponse]]] GetAll(VitalPetTech.Domain.Common.AlertaFilter) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.258 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.270 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 11.9605ms.
+2026-11-01 13:27:29.270 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.AlertaResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.270 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API) in 12.9651ms
+2026-11-01 13:27:29.270 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.270 -03:00 [INF] HTTP GET /api/Alerta responded 200 in 13.3015 ms
+2026-11-01 13:27:29.270 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Alerta - 200 null application/json; charset=utf-8 13.8346ms
+2026-11-01 13:27:29.272 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.272 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.272 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.273 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.274 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.274 -03:00 [INF] Tutor 3 criado.
+2026-11-01 13:27:29.274 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.4087ms.
+2026-11-01 13:27:29.274 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.274 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.9568ms
+2026-11-01 13:27:29.274 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.274 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 2.2367 ms
+2026-11-01 13:27:29.274 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 2.6114ms
+2026-11-01 13:27:29.275 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:29.275 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.275 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.276 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.277 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.277 -03:00 [INF] Pet 3 criado para o tutor 3.
+2026-11-01 13:27:29.277 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.7391ms.
+2026-11-01 13:27:29.277 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.277 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 2.0129ms
+2026-11-01 13:27:29.277 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.277 -03:00 [INF] HTTP POST /api/Pet responded 201 in 2.3053 ms
+2026-11-01 13:27:29.277 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 2.6486ms
+2026-11-01 13:27:29.278 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Alerta - application/json; charset=utf-8 138
+2026-11-01 13:27:29.278 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.278 -03:00 [INF] Route matched with {action = "Create", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] Create(VitalPetTech.Application.DTOs.AlertaRequest) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.278 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.279 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.279 -03:00 [INF] Alerta 3 ("Critico") criado para o pet 3.
+2026-11-01 13:27:29.279 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5444ms.
+2026-11-01 13:27:29.279 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.AlertaResponse'.
+2026-11-01 13:27:29.279 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) in 1.1888ms
+2026-11-01 13:27:29.279 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.279 -03:00 [INF] HTTP POST /api/Alerta responded 201 in 1.3994 ms
+2026-11-01 13:27:29.279 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Alerta - 201 null application/json; charset=utf-8 1.6234ms
+2026-11-01 13:27:29.280 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost/api/Alerta/3 - application/json; charset=utf-8 156
+2026-11-01 13:27:29.280 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API)'
+2026-11-01 13:27:29.280 -03:00 [INF] Route matched with {action = "Update", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, VitalPetTech.Application.DTOs.AlertaUpdateRequest) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.281 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.281 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.281 -03:00 [INF] Alerta 3 atualizado (Resolvido: true).
+2026-11-01 13:27:29.281 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.NoContentResult in 0.6953ms.
+2026-11-01 13:27:29.282 -03:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2026-11-01 13:27:29.282 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API) in 1.478ms
+2026-11-01 13:27:29.282 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.Update (VitalPet Tech.API)'
+2026-11-01 13:27:29.282 -03:00 [INF] HTTP PUT /api/Alerta/3 responded 204 in 1.8470 ms
+2026-11-01 13:27:29.282 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost/api/Alerta/3 - 204 null null 2.2333ms
+2026-11-01 13:27:29.283 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Alerta/3 - null null
+2026-11-01 13:27:29.283 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.283 -03:00 [INF] Route matched with {action = "GetById", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.283 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.284 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.533ms.
+2026-11-01 13:27:29.284 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPetTech.Application.DTOs.AlertaResponse'.
+2026-11-01 13:27:29.284 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API) in 1.3602ms
+2026-11-01 13:27:29.284 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.285 -03:00 [INF] HTTP GET /api/Alerta/3 responded 200 in 1.6982 ms
+2026-11-01 13:27:29.285 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Alerta/3 - 200 null application/json; charset=utf-8 2.2354ms
+2026-11-01 13:27:29.296 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/EventoClinico - application/json; charset=utf-8 162
+2026-11-01 13:27:29.297 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.299 -03:00 [INF] Route matched with {action = "Create", controller = "EventoClinico"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.EventoClinicoResponse]] Create(VitalPetTech.Application.DTOs.EventoClinicoRequest) on controller VitalPet_Tech.Controllers.EventoClinicoController (VitalPet Tech.API).
+2026-11-01 13:27:29.302 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.304 -03:00 [INF] Executed action VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API) in 4.5769ms
+2026-11-01 13:27:29.304 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.304 -03:00 [ERR] HTTP POST /api/EventoClinico responded 500 in 7.7428 ms
+VitalPetTech.Application.Exceptions.BusinessRuleException: O pet com ID 999999 não existe.
+   at VitalPetTech.Application.Services.EventoClinicoService.ObterPetOuFalharAsync(Int32 petId) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 85
+   at VitalPetTech.Application.Services.EventoClinicoService.CreateAsync(EventoClinicoRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 41
+   at VitalPet_Tech.Controllers.EventoClinicoController.Create(EventoClinicoRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\EventoClinicoController.cs:line 46
+   at lambda_method440(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.305 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.BusinessRuleException: O pet com ID 999999 não existe.
+   at VitalPetTech.Application.Services.EventoClinicoService.ObterPetOuFalharAsync(Int32 petId) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 85
+   at VitalPetTech.Application.Services.EventoClinicoService.CreateAsync(EventoClinicoRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 41
+   at VitalPet_Tech.Controllers.EventoClinicoController.Create(EventoClinicoRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\EventoClinicoController.cs:line 46
+   at lambda_method440(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.306 -03:00 [WRN] Regra de negócio violada. O pet com ID 999999 não existe.
+2026-11-01 13:27:29.306 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/EventoClinico - 422 null application/json; charset=utf-8 10.4083ms
+2026-11-01 13:27:29.308 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/EventoClinico - application/json; charset=utf-8 140
+2026-11-01 13:27:29.308 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.308 -03:00 [INF] Route matched with {action = "Create", controller = "EventoClinico"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.EventoClinicoResponse]] Create(VitalPetTech.Application.DTOs.EventoClinicoRequest) on controller VitalPet_Tech.Controllers.EventoClinicoController (VitalPet Tech.API).
+2026-11-01 13:27:29.310 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-11-01 13:27:29.315 -03:00 [INF] Executed action VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API) in 6.5463ms
+2026-11-01 13:27:29.315 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.315 -03:00 [INF] HTTP POST /api/EventoClinico responded 400 in 6.8111 ms
+2026-11-01 13:27:29.315 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/EventoClinico - 400 null application/json; charset=utf-8 7.0912ms
+2026-11-01 13:27:29.316 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/EventoClinico - null null
+2026-11-01 13:27:29.316 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.319 -03:00 [INF] Route matched with {action = "GetAll", controller = "EventoClinico"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.EventoClinicoResponse]]] GetAll(VitalPetTech.Domain.Common.EventoClinicoFilter) on controller VitalPet_Tech.Controllers.EventoClinicoController (VitalPet Tech.API).
+2026-11-01 13:27:29.321 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.335 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 14.48ms.
+2026-11-01 13:27:29.335 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.EventoClinicoResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.344 -03:00 [INF] Executed action VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API) in 25.2688ms
+2026-11-01 13:27:29.344 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.344 -03:00 [INF] HTTP GET /api/EventoClinico responded 200 in 28.2650 ms
+2026-11-01 13:27:29.345 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/EventoClinico - 200 null application/json; charset=utf-8 28.5541ms
+2026-11-01 13:27:29.346 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/EventoClinico/999999 - null null
+2026-11-01 13:27:29.346 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.348 -03:00 [INF] Route matched with {action = "GetById", controller = "EventoClinico"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.EventoClinicoResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.EventoClinicoController (VitalPet Tech.API).
+2026-11-01 13:27:29.349 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.EventoClinicoController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.360 -03:00 [WRN] Evento clínico com ID 999999 não foi encontrado.
+2026-11-01 13:27:29.360 -03:00 [INF] Executed action VitalPet_Tech.Controllers.EventoClinicoController.GetById (VitalPet Tech.API) in 11.9786ms
+2026-11-01 13:27:29.361 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.361 -03:00 [ERR] HTTP GET /api/EventoClinico/999999 responded 500 in 14.4313 ms
+VitalPetTech.Application.Exceptions.NotFoundException: Evento clínico não encontrado.
+   at VitalPetTech.Application.Services.EventoClinicoService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 76
+   at VitalPetTech.Application.Services.EventoClinicoService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 37
+   at VitalPet_Tech.Controllers.EventoClinicoController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\EventoClinicoController.cs:line 38
+   at lambda_method470(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.362 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.NotFoundException: Evento clínico não encontrado.
+   at VitalPetTech.Application.Services.EventoClinicoService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 76
+   at VitalPetTech.Application.Services.EventoClinicoService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\EventoClinicoService.cs:line 37
+   at VitalPet_Tech.Controllers.EventoClinicoController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\EventoClinicoController.cs:line 38
+   at lambda_method470(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.362 -03:00 [WRN] Recurso não encontrado. Evento clínico não encontrado.
+2026-11-01 13:27:29.362 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/EventoClinico/999999 - 404 null application/json; charset=utf-8 16.3778ms
+2026-11-01 13:27:29.364 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.364 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.364 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.364 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.365 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.365 -03:00 [INF] Tutor 4 criado.
+2026-11-01 13:27:29.365 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.432ms.
+2026-11-01 13:27:29.365 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.365 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.1889ms
+2026-11-01 13:27:29.365 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.365 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.4676 ms
+2026-11-01 13:27:29.365 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.7724ms
+2026-11-01 13:27:29.366 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:29.366 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.366 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.366 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.366 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.367 -03:00 [INF] Pet 4 criado para o tutor 4.
+2026-11-01 13:27:29.367 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.542ms.
+2026-11-01 13:27:29.367 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.367 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.1194ms
+2026-11-01 13:27:29.367 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.367 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.3109 ms
+2026-11-01 13:27:29.367 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.509ms
+2026-11-01 13:27:29.367 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/EventoClinico - application/json; charset=utf-8 158
+2026-11-01 13:27:29.367 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.368 -03:00 [INF] Route matched with {action = "Create", controller = "EventoClinico"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.EventoClinicoResponse]] Create(VitalPetTech.Application.DTOs.EventoClinicoRequest) on controller VitalPet_Tech.Controllers.EventoClinicoController (VitalPet Tech.API).
+2026-11-01 13:27:29.368 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.383 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.383 -03:00 [INF] Evento clínico 1 criado para o pet 4.
+2026-11-01 13:27:29.384 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 16.396ms.
+2026-11-01 13:27:29.384 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.EventoClinicoResponse'.
+2026-11-01 13:27:29.386 -03:00 [INF] Executed action VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API) in 18.1917ms
+2026-11-01 13:27:29.386 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.EventoClinicoController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.386 -03:00 [INF] HTTP POST /api/EventoClinico responded 201 in 18.4184 ms
+2026-11-01 13:27:29.386 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/EventoClinico - 201 null application/json; charset=utf-8 18.6448ms
+2026-11-01 13:27:29.388 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.388 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.388 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.388 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.389 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.389 -03:00 [INF] Tutor 5 criado.
+2026-11-01 13:27:29.389 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.3633ms.
+2026-11-01 13:27:29.389 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.389 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.1117ms
+2026-11-01 13:27:29.389 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.389 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.3472 ms
+2026-11-01 13:27:29.389 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.621ms
+2026-11-01 13:27:29.390 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 115
+2026-11-01 13:27:29.390 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.390 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.390 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.391 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.391 -03:00 [INF] Pet 5 criado para o tutor 5.
+2026-11-01 13:27:29.391 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5167ms.
+2026-11-01 13:27:29.391 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.391 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.1455ms
+2026-11-01 13:27:29.391 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.391 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.3411 ms
+2026-11-01 13:27:29.391 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.5472ms
+2026-11-01 13:27:29.392 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 115
+2026-11-01 13:27:29.392 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.392 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.392 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.393 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.393 -03:00 [INF] Pet 6 criado para o tutor 5.
+2026-11-01 13:27:29.393 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5238ms.
+2026-11-01 13:27:29.393 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.393 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.1291ms
+2026-11-01 13:27:29.393 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.393 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.3744 ms
+2026-11-01 13:27:29.393 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.6669ms
+2026-11-01 13:27:29.394 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Pet?especie=Esp-c5fb21560240478b&pageSize=1 - null null
+2026-11-01 13:27:29.394 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.397 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.399 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.416 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 17.092ms.
+2026-11-01 13:27:29.416 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.PetResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.418 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 20.6502ms
+2026-11-01 13:27:29.418 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.418 -03:00 [INF] HTTP GET /api/Pet responded 200 in 23.6408 ms
+2026-11-01 13:27:29.418 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Pet?especie=Esp-c5fb21560240478b&pageSize=1 - 200 null application/json; charset=utf-8 23.9326ms
+2026-11-01 13:27:29.428 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.428 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.428 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.428 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.429 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.429 -03:00 [INF] Tutor 6 criado.
+2026-11-01 13:27:29.429 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.4357ms.
+2026-11-01 13:27:29.429 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.429 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.2811ms
+2026-11-01 13:27:29.429 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.429 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.5416 ms
+2026-11-01 13:27:29.429 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.9787ms
+2026-11-01 13:27:29.430 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:29.430 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.430 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.430 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.431 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.431 -03:00 [INF] Pet 7 criado para o tutor 6.
+2026-11-01 13:27:29.431 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5581ms.
+2026-11-01 13:27:29.431 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.431 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.1728ms
+2026-11-01 13:27:29.431 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.431 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.3623 ms
+2026-11-01 13:27:29.431 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.5687ms
+2026-11-01 13:27:29.432 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Pet/7 - null null
+2026-11-01 13:27:29.432 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.434 -03:00 [INF] Route matched with {action = "GetById", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.435 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.436 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.5093ms.
+2026-11-01 13:27:29.437 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.437 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API) in 2.3106ms
+2026-11-01 13:27:29.437 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.437 -03:00 [INF] HTTP GET /api/Pet/7 responded 200 in 5.0134 ms
+2026-11-01 13:27:29.437 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Pet/7 - 200 null application/json; charset=utf-8 5.2566ms
+2026-11-01 13:27:29.441 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.442 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.442 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.442 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.443 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.443 -03:00 [INF] Tutor 7 criado.
+2026-11-01 13:27:29.443 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5173ms.
+2026-11-01 13:27:29.443 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.443 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.4004ms
+2026-11-01 13:27:29.443 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.443 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.7145 ms
+2026-11-01 13:27:29.443 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 2.1872ms
+2026-11-01 13:27:29.444 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:29.444 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.444 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.444 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.445 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.445 -03:00 [INF] Pet 8 criado para o tutor 7.
+2026-11-01 13:27:29.445 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5875ms.
+2026-11-01 13:27:29.445 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.445 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.2451ms
+2026-11-01 13:27:29.445 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.445 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.4630 ms
+2026-11-01 13:27:29.446 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.714ms
+2026-11-01 13:27:29.446 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Alerta - application/json; charset=utf-8 138
+2026-11-01 13:27:29.446 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.446 -03:00 [INF] Route matched with {action = "Create", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] Create(VitalPetTech.Application.DTOs.AlertaRequest) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.447 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.447 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.447 -03:00 [INF] Alerta 4 ("Critico") criado para o pet 8.
+2026-11-01 13:27:29.447 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5098ms.
+2026-11-01 13:27:29.447 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.AlertaResponse'.
+2026-11-01 13:27:29.447 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API) in 1.3153ms
+2026-11-01 13:27:29.448 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.448 -03:00 [INF] HTTP POST /api/Alerta responded 201 in 1.5620 ms
+2026-11-01 13:27:29.448 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Alerta - 201 null application/json; charset=utf-8 1.84ms
+2026-11-01 13:27:29.448 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Alerta/4 - null null
+2026-11-01 13:27:29.448 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.448 -03:00 [INF] Route matched with {action = "GetById", controller = "Alerta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.AlertaResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.AlertaController (VitalPet Tech.API).
+2026-11-01 13:27:29.449 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.449 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.5307ms.
+2026-11-01 13:27:29.449 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPetTech.Application.DTOs.AlertaResponse'.
+2026-11-01 13:27:29.449 -03:00 [INF] Executed action VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API) in 1.099ms
+2026-11-01 13:27:29.449 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.AlertaController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.450 -03:00 [INF] HTTP GET /api/Alerta/4 responded 200 in 1.2923 ms
+2026-11-01 13:27:29.450 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Alerta/4 - 200 null application/json; charset=utf-8 1.5219ms
+2026-11-01 13:27:29.451 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.451 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.451 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.452 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.452 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.452 -03:00 [INF] Tutor 8 criado.
+2026-11-01 13:27:29.452 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.3246ms.
+2026-11-01 13:27:29.452 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.452 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.0556ms
+2026-11-01 13:27:29.452 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.452 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.2646 ms
+2026-11-01 13:27:29.452 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.4917ms
+2026-11-01 13:27:29.453 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 103
+2026-11-01 13:27:29.453 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.453 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.454 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.454 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.454 -03:00 [INF] Pet 9 criado para o tutor 8.
+2026-11-01 13:27:29.454 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5214ms.
+2026-11-01 13:27:29.454 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.454 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.1523ms
+2026-11-01 13:27:29.454 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.455 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.3447 ms
+2026-11-01 13:27:29.455 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.5482ms
+2026-11-01 13:27:29.456 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 108
+2026-11-01 13:27:29.456 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.456 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.456 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.457 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 0.7583ms
+2026-11-01 13:27:29.457 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.457 -03:00 [ERR] HTTP POST /api/Pet responded 500 in 1.0354 ms
+VitalPetTech.Application.Exceptions.BusinessRuleException: O tutor com ID 999999 não existe.
+   at VitalPetTech.Application.Services.PetService.ObterTutorOuFalharAsync(Int32 tutorId) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 82
+   at VitalPetTech.Application.Services.PetService.CreateAsync(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 38
+   at VitalPet_Tech.Controllers.PetController.Create(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\PetController.cs:line 46
+   at lambda_method168(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.458 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.BusinessRuleException: O tutor com ID 999999 não existe.
+   at VitalPetTech.Application.Services.PetService.ObterTutorOuFalharAsync(Int32 tutorId) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 82
+   at VitalPetTech.Application.Services.PetService.CreateAsync(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 38
+   at VitalPet_Tech.Controllers.PetController.Create(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\PetController.cs:line 46
+   at lambda_method168(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.458 -03:00 [WRN] Regra de negócio violada. O tutor com ID 999999 não existe.
+2026-11-01 13:27:29.459 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 422 null application/json; charset=utf-8 3.1592ms
+2026-11-01 13:27:29.460 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.460 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.460 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.461 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.461 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.461 -03:00 [INF] Tutor 9 criado.
+2026-11-01 13:27:29.461 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.3481ms.
+2026-11-01 13:27:29.461 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.461 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 0.987ms
+2026-11-01 13:27:29.461 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.461 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.2279 ms
+2026-11-01 13:27:29.461 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.4788ms
+2026-11-01 13:27:29.462 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 115
+2026-11-01 13:27:29.462 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.462 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.462 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.463 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.463 -03:00 [INF] Pet 10 criado para o tutor 9.
+2026-11-01 13:27:29.463 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.5383ms.
+2026-11-01 13:27:29.463 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.PetResponse'.
+2026-11-01 13:27:29.463 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 1.1208ms
+2026-11-01 13:27:29.463 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.463 -03:00 [INF] HTTP POST /api/Pet responded 201 in 1.3067 ms
+2026-11-01 13:27:29.463 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 201 null application/json; charset=utf-8 1.4952ms
+2026-11-01 13:27:29.464 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Pet?especie=Esp-f32567c88bf74001 - null null
+2026-11-01 13:27:29.464 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.464 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.464 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.465 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.7394ms.
+2026-11-01 13:27:29.465 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.PetResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.466 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 1.7367ms
+2026-11-01 13:27:29.466 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.466 -03:00 [INF] HTTP GET /api/Pet responded 200 in 1.9556 ms
+2026-11-01 13:27:29.466 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Pet?especie=Esp-f32567c88bf74001 - 200 null application/json; charset=utf-8 2.1832ms
+2026-11-01 13:27:29.469 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Pet - null null
+2026-11-01 13:27:29.469 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.469 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.469 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.480 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 10.5109ms.
+2026-11-01 13:27:29.480 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.PetResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.481 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 11.9266ms
+2026-11-01 13:27:29.481 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.481 -03:00 [INF] HTTP GET /api/Pet responded 200 in 12.3737 ms
+2026-11-01 13:27:29.481 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Pet - 200 null application/json; charset=utf-8 12.7853ms
+2026-11-01 13:27:29.492 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Pet - application/json; charset=utf-8 108
+2026-11-01 13:27:29.492 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.492 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.493 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-11-01 13:27:29.493 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 0.7565ms
+2026-11-01 13:27:29.493 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.493 -03:00 [INF] HTTP POST /api/Pet responded 400 in 1.0935 ms
+2026-11-01 13:27:29.493 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Pet - 400 null application/json; charset=utf-8 1.4797ms
+2026-11-01 13:27:29.494 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Pet/999999 - null null
+2026-11-01 13:27:29.494 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.494 -03:00 [INF] Route matched with {action = "GetById", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-11-01 13:27:29.495 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.495 -03:00 [WRN] Pet com ID 999999 não foi encontrado.
+2026-11-01 13:27:29.495 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API) in 0.8982ms
+2026-11-01 13:27:29.495 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.495 -03:00 [ERR] HTTP GET /api/Pet/999999 responded 500 in 1.1660 ms
+VitalPetTech.Application.Exceptions.NotFoundException: Pet não encontrado.
+   at VitalPetTech.Application.Services.PetService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 73
+   at VitalPetTech.Application.Services.PetService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 34
+   at VitalPet_Tech.Controllers.PetController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\PetController.cs:line 38
+   at lambda_method583(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.496 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.NotFoundException: Pet não encontrado.
+   at VitalPetTech.Application.Services.PetService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 73
+   at VitalPetTech.Application.Services.PetService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 34
+   at VitalPet_Tech.Controllers.PetController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\PetController.cs:line 38
+   at lambda_method583(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.497 -03:00 [WRN] Recurso não encontrado. Pet não encontrado.
+2026-11-01 13:27:29.497 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Pet/999999 - 404 null application/json; charset=utf-8 3.436ms
+2026-11-01 13:27:29.499 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.499 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.499 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.500 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.500 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.500 -03:00 [INF] Tutor 10 criado.
+2026-11-01 13:27:29.501 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.6149ms.
+2026-11-01 13:27:29.501 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.501 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.5483ms
+2026-11-01 13:27:29.501 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.501 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.8139 ms
+2026-11-01 13:27:29.501 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 2.1519ms
+2026-11-01 13:27:29.502 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Tutor/999999 - null null
+2026-11-01 13:27:29.502 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.504 -03:00 [INF] Route matched with {action = "GetById", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.505 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.506 -03:00 [WRN] Tutor com ID 999999 não foi encontrado.
+2026-11-01 13:27:29.506 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API) in 1.902ms
+2026-11-01 13:27:29.506 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.507 -03:00 [ERR] HTTP GET /api/Tutor/999999 responded 500 in 4.3483 ms
+VitalPetTech.Application.Exceptions.NotFoundException: Tutor não encontrado.
+   at VitalPetTech.Application.Services.TutorService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 63
+   at VitalPetTech.Application.Services.TutorService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 32
+   at VitalPet_Tech.Controllers.TutorController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\TutorController.cs:line 37
+   at lambda_method604(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.508 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.NotFoundException: Tutor não encontrado.
+   at VitalPetTech.Application.Services.TutorService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 63
+   at VitalPetTech.Application.Services.TutorService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 32
+   at VitalPet_Tech.Controllers.TutorController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\TutorController.cs:line 37
+   at lambda_method604(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.508 -03:00 [WRN] Recurso não encontrado. Tutor não encontrado.
+2026-11-01 13:27:29.509 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Tutor/999999 - 404 null application/json; charset=utf-8 6.5465ms
+2026-11-01 13:27:29.512 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.512 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.512 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.513 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.513 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.513 -03:00 [INF] Tutor 11 criado.
+2026-11-01 13:27:29.513 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.3852ms.
+2026-11-01 13:27:29.513 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.513 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 1.1078ms
+2026-11-01 13:27:29.513 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.513 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.3356 ms
+2026-11-01 13:27:29.513 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.6482ms
+2026-11-01 13:27:29.514 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Tutor?page=1&pageSize=5 - null null
+2026-11-01 13:27:29.514 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.517 -03:00 [INF] Route matched with {action = "GetAll", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPet_Tech.API.Hateoas.PagedResponse`1[VitalPetTech.Application.DTOs.TutorResponse]]] GetAll(VitalPetTech.Domain.Common.TutorFilter) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.517 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.530 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 12.1735ms.
+2026-11-01 13:27:29.530 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPet_Tech.API.Hateoas.PagedResponse`1[[VitalPetTech.Application.DTOs.TutorResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-11-01 13:27:29.531 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.GetAll (VitalPet Tech.API) in 14.8378ms
+2026-11-01 13:27:29.532 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.GetAll (VitalPet Tech.API)'
+2026-11-01 13:27:29.532 -03:00 [INF] HTTP GET /api/Tutor responded 200 in 17.5826 ms
+2026-11-01 13:27:29.532 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Tutor?page=1&pageSize=5 - 200 null application/json; charset=utf-8 17.9122ms
+2026-11-01 13:27:29.533 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 113
+2026-11-01 13:27:29.534 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.534 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.534 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-11-01 13:27:29.534 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 0.6103ms
+2026-11-01 13:27:29.534 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.534 -03:00 [INF] HTTP POST /api/Tutor responded 400 in 0.8578 ms
+2026-11-01 13:27:29.534 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 400 null application/json; charset=utf-8 1.1249ms
+2026-11-01 13:27:29.535 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost/api/Tutor - application/json; charset=utf-8 124
+2026-11-01 13:27:29.536 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.536 -03:00 [INF] Route matched with {action = "Create", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] Create(VitalPetTech.Application.DTOs.TutorRequest) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.536 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.536 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.536 -03:00 [INF] Tutor 12 criado.
+2026-11-01 13:27:29.536 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 0.3607ms.
+2026-11-01 13:27:29.537 -03:00 [INF] Executing CreatedAtActionResult, writing value of type 'VitalPetTech.Application.DTOs.TutorResponse'.
+2026-11-01 13:27:29.537 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API) in 0.9427ms
+2026-11-01 13:27:29.537 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Create (VitalPet Tech.API)'
+2026-11-01 13:27:29.537 -03:00 [INF] HTTP POST /api/Tutor responded 201 in 1.1823 ms
+2026-11-01 13:27:29.537 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost/api/Tutor - 201 null application/json; charset=utf-8 1.4073ms
+2026-11-01 13:27:29.551 -03:00 [INF] Request starting HTTP/1.1 DELETE http://localhost/api/Tutor/12 - null null
+2026-11-01 13:27:29.551 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.Delete (VitalPet Tech.API)'
+2026-11-01 13:27:29.554 -03:00 [INF] Route matched with {action = "Delete", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(Int32) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.555 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.Delete (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.561 -03:00 [INF] Saved 1 entities to in-memory store.
+2026-11-01 13:27:29.563 -03:00 [INF] Tutor 12 removido.
+2026-11-01 13:27:29.563 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.TutorController.Delete (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.NoContentResult in 7.8244ms.
+2026-11-01 13:27:29.563 -03:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2026-11-01 13:27:29.563 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.Delete (VitalPet Tech.API) in 8.4768ms
+2026-11-01 13:27:29.563 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.Delete (VitalPet Tech.API)'
+2026-11-01 13:27:29.563 -03:00 [INF] HTTP DELETE /api/Tutor/12 responded 204 in 11.3510 ms
+2026-11-01 13:27:29.563 -03:00 [INF] Request finished HTTP/1.1 DELETE http://localhost/api/Tutor/12 - 204 null null 11.8284ms
+2026-11-01 13:27:29.563 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost/api/Tutor/12 - null null
+2026-11-01 13:27:29.563 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.564 -03:00 [INF] Route matched with {action = "GetById", controller = "Tutor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.TutorResponse]] GetById(Int32) on controller VitalPet_Tech.Controllers.TutorController (VitalPet Tech.API).
+2026-11-01 13:27:29.564 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API) - Validation state: "Valid"
+2026-11-01 13:27:29.564 -03:00 [WRN] Tutor com ID 12 não foi encontrado.
+2026-11-01 13:27:29.564 -03:00 [INF] Executed action VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API) in 0.8576ms
+2026-11-01 13:27:29.565 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.TutorController.GetById (VitalPet Tech.API)'
+2026-11-01 13:27:29.565 -03:00 [ERR] HTTP GET /api/Tutor/12 responded 500 in 1.1205 ms
+VitalPetTech.Application.Exceptions.NotFoundException: Tutor não encontrado.
+   at VitalPetTech.Application.Services.TutorService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 63
+   at VitalPetTech.Application.Services.TutorService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 32
+   at VitalPet_Tech.Controllers.TutorController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\TutorController.cs:line 37
+   at lambda_method604(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-11-01 13:27:29.565 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.NotFoundException: Tutor não encontrado.
+   at VitalPetTech.Application.Services.TutorService.ObterOuFalharAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 63
+   at VitalPetTech.Application.Services.TutorService.GetByIdAsync(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\TutorService.cs:line 32
+   at VitalPet_Tech.Controllers.TutorController.GetById(Int32 id) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\TutorController.cs:line 37
+   at lambda_method604(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-11-01 13:27:29.566 -03:00 [WRN] Recurso não encontrado. Tutor não encontrado.
+2026-11-01 13:27:29.566 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost/api/Tutor/12 - 404 null application/json; charset=utf-8 2.7463ms

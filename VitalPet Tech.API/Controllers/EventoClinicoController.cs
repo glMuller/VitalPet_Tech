@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using VitalPetTech.Application.DTOs;
 using VitalPetTech.Application.Interfaces;
 using VitalPetTech.Domain.Common;
+using VitalPet_Tech.API.Hateoas;
+using VitalPetTech.Application.Hateoas;
 
 namespace VitalPet_Tech.Controllers;
 
@@ -22,31 +24,39 @@ public class EventoClinicoController : ControllerBase
     /// e filtros por pet e tipo. Por padrão, do mais recente para o mais antigo.
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResult<EventoClinicoResponse>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PagedResult<EventoClinicoResponse>>> GetAll([FromQuery] EventoClinicoFilter filter)
-        => Ok(await _service.GetPagedAsync(filter));
+    [ProducesResponseType(typeof(PagedResponse<EventoClinicoResponse>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PagedResponse<EventoClinicoResponse>>> GetAll([FromQuery] EventoClinicoFilter filter)
+    {
+        var result = await _service.GetPagedAsync(filter);
+        return Ok(this.ToPagedResponse(result, WithLinks));
+    }
 
-    /// <summary>
-    /// Retorna um evento clínico pelo ID.
-    /// </summary>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(EventoClinicoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EventoClinicoResponse>> GetById(int id)
-        => Ok(await _service.GetByIdAsync(id));
+        => Ok(WithLinks(await _service.GetByIdAsync(id)));
 
-    /// <summary>
-    /// Cria um novo evento clínico. O pet informado precisa existir.
-    /// </summary>
     [HttpPost]
     [ProducesResponseType(typeof(EventoClinicoResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult<EventoClinicoResponse>> Create(EventoClinicoRequest request)
     {
-        var created = await _service.CreateAsync(request);
+        var created = WithLinks(await _service.CreateAsync(request));
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    private EventoClinicoResponse WithLinks(EventoClinicoResponse evento) => evento with
+    {
+        Links = new[]
+        {
+            this.LinkTo("self", "GET", nameof(GetById), values: new { id = evento.Id }),
+            this.LinkTo("update", "PUT", nameof(Update), values: new { id = evento.Id }),
+            this.LinkTo("delete", "DELETE", nameof(Delete), values: new { id = evento.Id }),
+            this.LinkTo("pet", "GET", "GetById", "Pet", new { id = evento.IdPet })
+        }
+    };
 
     /// <summary>
     /// Atualiza um evento clínico existente.

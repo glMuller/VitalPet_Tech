@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using VitalPetTech.Application.DTOs;
 using VitalPetTech.Application.Interfaces;
 using VitalPetTech.Domain.Common;
+using VitalPet_Tech.API.Hateoas;
+using VitalPetTech.Application.Hateoas;
 
 namespace VitalPet_Tech.Controllers;
 
@@ -21,30 +23,38 @@ public class TutorController : ControllerBase
     /// Lista tutores com paginação, ordenação (id, nome) e filtro por nome.
     /// </summary>
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResult<TutorResponse>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<PagedResult<TutorResponse>>> GetAll([FromQuery] TutorFilter filter)
-        => Ok(await _service.GetPagedAsync(filter));
+    [ProducesResponseType(typeof(PagedResponse<TutorResponse>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PagedResponse<TutorResponse>>> GetAll([FromQuery] TutorFilter filter)
+    {
+        var result = await _service.GetPagedAsync(filter);
+        return Ok(this.ToPagedResponse(result, WithLinks));
+    }
 
-    /// <summary>
-    /// Retorna um tutor pelo ID, com o resumo dos seus pets.
-    /// </summary>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(TutorResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<TutorResponse>> GetById(int id)
-        => Ok(await _service.GetByIdAsync(id));
+        => Ok(WithLinks(await _service.GetByIdAsync(id)));
 
-    /// <summary>
-    /// Cria um novo tutor.
-    /// </summary>
     [HttpPost]
     [ProducesResponseType(typeof(TutorResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TutorResponse>> Create(TutorRequest request)
     {
-        var created = await _service.CreateAsync(request);
+        var created = WithLinks(await _service.CreateAsync(request));
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    private TutorResponse WithLinks(TutorResponse tutor) => tutor with
+    {
+        Links = new[]
+        {
+            this.LinkTo("self", "GET", nameof(GetById), values: new { id = tutor.Id }),
+            this.LinkTo("update", "PUT", nameof(Update), values: new { id = tutor.Id }),
+            this.LinkTo("delete", "DELETE", nameof(Delete), values: new { id = tutor.Id }),
+            this.LinkTo("pets", "GET", "GetAll", "Pet", new { tutorId = tutor.Id })
+        }
+    };
 
     /// <summary>
     /// Atualiza os dados de um tutor existente.

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using VitalPetTech.Application.Hateoas;
 using VitalPetTech.Domain.Entities;
 
 namespace VitalPetTech.Application.DTOs;
@@ -34,4 +35,4 @@ public record EventoClinicoResponse(
     string Descricao,
     DateTime? ProximoRetorno,
     int IdPet,
-    string NomePet);
+    string NomePet) : LinkedResource;

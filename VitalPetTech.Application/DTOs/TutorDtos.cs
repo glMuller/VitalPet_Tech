@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using VitalPetTech.Application.Hateoas;
 
 namespace VitalPetTech.Application.DTOs;
 
@@ -29,4 +30,4 @@ public record TutorResponse(
     string CpfTutor,
     string TelefoneTutor,
     string EnderecoTutor,
-    IReadOnlyList<PetResumoResponse> Pets);
+    IReadOnlyList<PetResumoResponse> Pets) : LinkedResource;
