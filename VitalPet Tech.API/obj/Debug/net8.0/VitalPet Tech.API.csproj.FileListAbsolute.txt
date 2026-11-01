@@ -158,3 +158,11 @@ C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Application.pdb
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Infrastructure.pdb
 C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\VitalPetTech.Domain.pdb
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

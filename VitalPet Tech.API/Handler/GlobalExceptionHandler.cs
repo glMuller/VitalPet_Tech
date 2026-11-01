@@ -20,6 +20,7 @@ public class GlobalExceptionHandler : IExceptionHandler
         {
             NotFoundException => (StatusCodes.Status404NotFound, "Recurso não encontrado."),
             BusinessRuleException => (StatusCodes.Status422UnprocessableEntity, "Regra de negócio violada."),
+            InvalidCredentialsException => (StatusCodes.Status401Unauthorized, "Credenciais inválidas."), // <<< NOVO
             _ => (StatusCodes.Status500InternalServerError, "Erro interno do servidor.")
         };
 

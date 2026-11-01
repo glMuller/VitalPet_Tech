@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Json;
 using VitalPetTech.Application.DTOs;
 using VitalPetTech.Domain.Entities;
@@ -15,14 +15,14 @@ public class EventoClinicoControllerIntegrationTests
 
     public EventoClinicoControllerIntegrationTests(CustomWebApplicationFactory factory)
     {
-        _client = factory.CreateClient();
+        _client = factory.CreateAuthenticatedClient();
     }
 
     private static EventoClinicoRequest CriarRequest(int idPet, string descricao = "Consulta de rotina") => new()
     {
         Tipo = TipoEvento.Consulta,
         DataEvento = DateTime.Now,
-        Clinica = "Clínica VitalPet",
+        Clinica = "ClÃ­nica VitalPet",
         Descricao = descricao,
         IdPet = idPet
     };
@@ -31,7 +31,7 @@ public class EventoClinicoControllerIntegrationTests
     public async Task GetAll_QuandoChamado_RetornaStatusOk()
     {
         // Arrange
-        // (nenhuma preparação necessária)
+        // (nenhuma preparaÃ§Ã£o necessÃ¡ria)
 
         // Act
         var resposta = await _client.GetAsync("/api/EventoClinico");

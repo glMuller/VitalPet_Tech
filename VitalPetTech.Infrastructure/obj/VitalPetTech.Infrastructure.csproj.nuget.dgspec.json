@@ -193,6 +193,10 @@
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.23.60, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.1.2, )"
             }
           },
           "imports": [

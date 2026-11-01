@@ -17,7 +17,7 @@ namespace VitalPetTech.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -43,7 +43,7 @@ namespace VitalPetTech.Infrastructure.Migrations
                         .HasColumnType("BINARY_DOUBLE")
                         .HasColumnName("longitude");
 
-                    b.Property<bool>("Resolvido")
+                    b.Property<int>("Resolvido")
                         .HasColumnType("NUMBER(1)")
                         .HasColumnName("resolvido");
 
@@ -192,6 +192,49 @@ namespace VitalPetTech.Infrastructure.Migrations
                     b.ToTable("Tutor", (string)null);
                 });
 
+            modelBuilder.Entity("VitalPetTech.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("id_usuario");
+
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("TIMESTAMP(7)")
+                        .HasColumnName("criado_em");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("NVARCHAR2(150)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("NVARCHAR2(100)")
+                        .HasColumnName("nome_usuario");
+
+                    b.Property<int>("Perfil")
+                        .HasColumnType("NUMBER(10)")
+                        .HasColumnName("perfil");
+
+                    b.Property<string>("SenhaHash")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("NVARCHAR2(200)")
+                        .HasColumnName("senha_hash");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Usuario", (string)null);
+                });
+
             modelBuilder.Entity("VitalPetTech.Domain.Entities.Alerta", b =>
                 {
                     b.HasOne("VitalPetTech.Domain.Entities.Pet", "Pet")
@@ -217,12 +260,17 @@ namespace VitalPetTech.Infrastructure.Migrations
             modelBuilder.Entity("VitalPetTech.Domain.Entities.Pet", b =>
                 {
                     b.HasOne("VitalPetTech.Domain.Entities.Tutor", "Tutor")
-                        .WithMany()
+                        .WithMany("Pets")
                         .HasForeignKey("IdTutor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Tutor");
+                });
+
+            modelBuilder.Entity("VitalPetTech.Domain.Entities.Tutor", b =>
+                {
+                    b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
         }

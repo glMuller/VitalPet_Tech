@@ -12,6 +12,7 @@ public static class DependencyInjection
         services.AddScoped<IPetService, PetService>();
         services.AddScoped<IEventoClinicoService, EventoClinicoService>();
         services.AddScoped<IAlertaService, AlertaService>();
+        services.AddScoped<IAuthService, AuthService>();
         return services;
     }
 }

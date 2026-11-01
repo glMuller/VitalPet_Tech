@@ -14,6 +14,7 @@ public class ApplicationContext : DbContext
     public DbSet<Pet> Pets { get; set; } = null!;
     public DbSet<EventoClinico> EventosClinicos { get; set; } = null!;
     public DbSet<Alerta> Alertas { get; set; } = null!;
+    public DbSet<Usuario> Usuarios { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -20,6 +20,16 @@
             Remove um alerta pelo ID.
             </summary>
         </member>
+        <member name="M:VitalPet_Tech.Controllers.AuthController.Registrar(VitalPetTech.Application.DTOs.RegistrarRequest)">
+            <summary>
+            Registra um novo usuário. O primeiro usuário do sistema recebe o perfil Admin; os demais, Usuario.
+            </summary>
+        </member>
+        <member name="M:VitalPet_Tech.Controllers.AuthController.Login(VitalPetTech.Application.DTOs.LoginRequest)">
+            <summary>
+            Autentica o usuário e devolve o token JWT para usar no header Authorization (Bearer).
+            </summary>
+        </member>
         <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.GetAll(VitalPetTech.Domain.Common.EventoClinicoFilter)">
             <summary>
             Lista eventos clínicos com paginação, ordenação (data, tipo, clinica, id)

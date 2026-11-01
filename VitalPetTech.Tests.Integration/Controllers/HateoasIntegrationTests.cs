@@ -1,4 +1,4 @@
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using System.Text.Json;
 using VitalPetTech.Tests.Integration.Fixtures;
 using VitalPetTech.Tests.Integration.Helpers;
@@ -13,7 +13,7 @@ public class HateoasIntegrationTests
 
     public HateoasIntegrationTests(CustomWebApplicationFactory factory)
     {
-        _client = factory.CreateClient();
+        _client = factory.CreateAuthenticatedClient();
     }
 
     private static List<string> Rels(JsonElement json) =>

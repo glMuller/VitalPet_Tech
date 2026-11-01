@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using VitalPetTech.Application.DTOs;
@@ -16,14 +16,14 @@ public class AlertaControllerIntegrationTests
 
     public AlertaControllerIntegrationTests(CustomWebApplicationFactory factory)
     {
-        _client = factory.CreateClient();
+        _client = factory.CreateAuthenticatedClient();
     }
 
     [Fact]
     public async Task GetAll_QuandoChamado_RetornaStatusOk()
     {
         // Arrange
-        // (nenhuma preparação necessária)
+        // (nenhuma preparaÃ§Ã£o necessÃ¡ria)
 
         // Act
         var resposta = await _client.GetAsync("/api/Alerta");

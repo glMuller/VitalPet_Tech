@@ -4,10 +4,12 @@ using VitalPetTech.Application.Interfaces;
 using VitalPetTech.Domain.Common;
 using VitalPet_Tech.API.Hateoas;
 using VitalPetTech.Application.Hateoas;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VitalPet_Tech.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 [Produces("application/json")]
 public class EventoClinicoController : ControllerBase
@@ -76,6 +78,7 @@ public class EventoClinicoController : ControllerBase
     /// Remove um evento clínico pelo ID.
     /// </summary>
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id)
