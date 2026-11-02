@@ -4,149 +4,94 @@
         <name>VitalPet Tech.API</name>
     </assembly>
     <members>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.GetAll">
+        <member name="M:VitalPet_Tech.Controllers.AlertaController.GetAll(VitalPetTech.Domain.Common.AlertaFilter)">
             <summary>
-            Retorna todos os alertas registrados no sistema.
+            Lista alertas com paginação, ordenação (timestamp, severidade, tipo, id) e filtros
+            por pet, resolvido, severidade e tipo. Use ?resolvido=false para ver os pendentes.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.GetById(System.Int32)">
+        <member name="M:VitalPet_Tech.Controllers.AlertaController.Update(System.Int32,VitalPetTech.Application.DTOs.AlertaUpdateRequest)">
             <summary>
-            Retorna um alerta específico pelo ID.
+            Atualiza um alerta (ideal para marcar como resolvido).
             </summary>
-            <param name="id">ID do alerta</param>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.GetPendentes">
-            <summary>
-            Retorna apenas os alertas que ainda não foram resolvidos pelo tutor.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.Create(VitalPet_Tech.Entites.Alerta)">
-            <summary>
-            Cria um novo registro de alerta (geralmente disparado pelo sensor IoT).
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.AlertaController.Update(System.Int32,VitalPet_Tech.Entites.Alerta)">
-            <summary>
-            Atualiza os dados de um alerta (ideal para marcar como Resolvido).
-            </summary>
-            <param name="id">ID do alerta a ser atualizado</param>
         </member>
         <member name="M:VitalPet_Tech.Controllers.AlertaController.Delete(System.Int32)">
             <summary>
             Remove um alerta pelo ID.
             </summary>
-            <param name="id">ID do alerta a ser removido</param>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.GetAll">
+        <member name="M:VitalPet_Tech.Controllers.AuthController.Registrar(VitalPetTech.Application.DTOs.RegistrarRequest)">
             <summary>
-            Retorna todos os eventos clínicos cadastrados.
+            Registra um novo usuário. O primeiro usuário do sistema recebe o perfil Admin; os demais, Usuario.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.GetById(System.Int32)">
+        <member name="M:VitalPet_Tech.Controllers.AuthController.Login(VitalPetTech.Application.DTOs.LoginRequest)">
             <summary>
-            Retorna um evento clínico específico pelo ID.
-            </summary>
-            <param name="id">ID do evento clínico</param>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.GetByPet(System.Int32)">
-            <summary>
-            Retorna o histórico de eventos clínicos de um pet específico.
-            </summary>
-            <param name="petId">ID do pet</param>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.Create(VitalPet_Tech.Entites.EventoClinico)">
-            <summary>
-            Cria um novo registro de evento clínico.
+            Autentica o usuário e devolve o token JWT para usar no header Authorization (Bearer).
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.Update(System.Int32,VitalPet_Tech.Entites.EventoClinico)">
+        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.GetAll(VitalPetTech.Domain.Common.EventoClinicoFilter)">
             <summary>
-            Atualiza os dados de um evento clínico existente.
+            Lista eventos clínicos com paginação, ordenação (data, tipo, clinica, id)
+            e filtros por pet e tipo. Por padrão, do mais recente para o mais antigo.
             </summary>
-            <param name="id">ID do evento a ser atualizado</param>
+        </member>
+        <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.Update(System.Int32,VitalPetTech.Application.DTOs.EventoClinicoRequest)">
+            <summary>
+            Atualiza um evento clínico existente.
+            </summary>
         </member>
         <member name="M:VitalPet_Tech.Controllers.EventoClinicoController.Delete(System.Int32)">
             <summary>
             Remove um evento clínico pelo ID.
             </summary>
-            <param name="id">ID do evento a ser removido</param>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.GetAll">
+        <member name="M:VitalPet_Tech.Controllers.LeituraSensorController.GetAll(VitalPetTech.Domain.Common.LeituraSensorFilter)">
             <summary>
-            Retorna todos os pets cadastrados e as informações dos seus tutores.
+            Lista leituras dos sensores (MongoDB) com paginação, ordenação (timestamp, valor, tipo)
+            e filtros por pet, tipo e período. Por padrão, da mais recente para a mais antiga.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.GetById(System.Int32)">
+        <member name="M:VitalPet_Tech.Controllers.LeituraSensorController.GetById(System.String)">
             <summary>
-            Retorna um pet pelo ID e traz os dados do tutor dele.
-            </summary>
-            <param name="id">ID do pet</param>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.GetByEspecie(System.String)">
-            <summary>
-            Retorna todos os pets de uma espécie específica.
-            </summary>
-            <param name="especie">A espécie do pet (ex: Cachorro, Gato)</param>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.GetByTutor(System.Int32)">
-            <summary>
-            Retorna todos os pets associados a um tutor específico.
-            </summary>
-            <param name="tutorId">ID do tutor</param>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.Create(VitalPet_Tech.Entites.Pet)">
-            <summary>
-            Cria um novo pet.
+            Retorna uma leitura pelo ID.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.PetController.Update(System.Int32,VitalPet_Tech.Entites.Pet)">
+        <member name="M:VitalPet_Tech.Controllers.LeituraSensorController.Create(VitalPetTech.Application.DTOs.LeituraSensorRequest)">
+            <summary>
+            Registra uma leitura de sensor IoT. O pet informado precisa existir.
+            </summary>
+        </member>
+        <member name="M:VitalPet_Tech.Controllers.PetController.GetAll(VitalPetTech.Domain.Common.PetFilter)">
+            <summary>
+            Lista pets com paginação, ordenação (id, nome, especie, peso, dataNascimento)
+            e filtros por espécie e tutor.
+            </summary>
+        </member>
+        <member name="M:VitalPet_Tech.Controllers.PetController.Update(System.Int32,VitalPetTech.Application.DTOs.PetRequest)">
             <summary>
             Atualiza os dados de um pet existente.
             </summary>
-            <param name="id">ID do pet a ser atualizado</param>
         </member>
         <member name="M:VitalPet_Tech.Controllers.PetController.Delete(System.Int32)">
             <summary>
-            Remove um pet pelo ID informado.
+            Remove um pet pelo ID.
             </summary>
-            <param name="id">ID do pet a ser removido</param>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.TutorController.GetAll">
+        <member name="M:VitalPet_Tech.Controllers.TutorController.GetAll(VitalPetTech.Domain.Common.TutorFilter)">
             <summary>
-            Retorna todos os tutores e seus respectivos pets.
+            Lista tutores com paginação, ordenação (id, nome) e filtro por nome.
             </summary>
         </member>
-        <member name="M:VitalPet_Tech.Controllers.TutorController.GetById(System.Int32)">
-            <summary>
-            Retorna um tutor pelo ID e traz a lista de pets dele.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.TutorController.Create(VitalPet_Tech.Entites.Tutor)">
-            <summary>
-            Cria um novo tutor.
-            </summary>
-        </member>
-        <member name="M:VitalPet_Tech.Controllers.TutorController.Update(System.Int32,VitalPet_Tech.Entites.Tutor)">
+        <member name="M:VitalPet_Tech.Controllers.TutorController.Update(System.Int32,VitalPetTech.Application.DTOs.TutorRequest)">
             <summary>
             Atualiza os dados de um tutor existente.
             </summary>
         </member>
         <member name="M:VitalPet_Tech.Controllers.TutorController.Delete(System.Int32)">
             <summary>
-            Remove um tutor pelo ID informado.
+            Remove um tutor (e, em cascata, seus pets, eventos e alertas).
             </summary>
-        </member>
-        <member name="T:VitalPet_Tech.API.Migrations.InitialCreate">
-            <inheritdoc />
-        </member>
-        <member name="M:VitalPet_Tech.API.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:VitalPet_Tech.API.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:VitalPet_Tech.API.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
         </member>
     </members>
 </doc>

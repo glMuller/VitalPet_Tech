@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitalPetTech.Tests.Unit", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitalPetTech.Tests.Integration", "VitalPetTech.Tests.Integration\VitalPetTech.Tests.Integration.csproj", "{D5261BC0-3F09-41D0-B317-3409D88586A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitalPetTech.Domain", "VitalPetTech.Domain\VitalPetTech.Domain.csproj", "{57B52B6F-EFE1-4B22-BF8D-D99F7BB92CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitalPetTech.Application", "VitalPetTech.Application\VitalPetTech.Application.csproj", "{FA59EEE7-A29F-4D05-9772-5752469CE464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitalPetTech.Infrastructure", "VitalPetTech.Infrastructure\VitalPetTech.Infrastructure.csproj", "{29BDAEF3-5E65-45C7-9989-D6B182485037}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +31,17 @@ Global
 		{D5261BC0-3F09-41D0-B317-3409D88586A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5261BC0-3F09-41D0-B317-3409D88586A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5261BC0-3F09-41D0-B317-3409D88586A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57B52B6F-EFE1-4B22-BF8D-D99F7BB92CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B52B6F-EFE1-4B22-BF8D-D99F7BB92CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B52B6F-EFE1-4B22-BF8D-D99F7BB92CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B52B6F-EFE1-4B22-BF8D-D99F7BB92CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA59EEE7-A29F-4D05-9772-5752469CE464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA59EEE7-A29F-4D05-9772-5752469CE464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA59EEE7-A29F-4D05-9772-5752469CE464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA59EEE7-A29F-4D05-9772-5752469CE464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29BDAEF3-5E65-45C7-9989-D6B182485037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29BDAEF3-5E65-45C7-9989-D6B182485037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29BDAEF3-5E65-45C7-9989-D6B182485037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29BDAEF3-5E65-45C7-9989-D6B182485037}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

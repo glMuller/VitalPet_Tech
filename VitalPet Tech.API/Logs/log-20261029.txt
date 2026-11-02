@@ -1,0 +1,227 @@
+2026-10-29 23:03:39.380 -03:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2026-10-29 23:03:39.582 -03:00 [INF] Now listening on: https://localhost:7143
+2026-10-29 23:03:39.590 -03:00 [INF] Now listening on: http://localhost:5240
+2026-10-29 23:03:39.599 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-29 23:03:39.604 -03:00 [INF] Hosting environment: Development
+2026-10-29 23:03:39.607 -03:00 [INF] Content root path: C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API
+2026-10-29 23:04:01.543 -03:00 [INF] Application is shutting down...
+2026-10-29 23:04:47.460 -03:00 [INF] Now listening on: http://localhost:5240
+2026-10-29 23:04:47.501 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-29 23:04:47.502 -03:00 [INF] Hosting environment: Development
+2026-10-29 23:04:47.503 -03:00 [INF] Content root path: C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API
+2026-10-29 23:05:04.018 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/ - null null
+2026-10-29 23:05:04.620 -03:00 [INF] HTTP GET / responded 404 in 1.2380 ms
+2026-10-29 23:05:04.637 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/ - 404 0 null 698.1673ms
+2026-10-29 23:05:04.660 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/, Response status code: 404
+2026-10-29 23:05:39.036 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger - null null
+2026-10-29 23:05:39.052 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger - 301 0 null 17.281ms
+2026-10-29 23:05:39.067 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html - null null
+2026-10-29 23:05:39.246 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html - 200 null text/html;charset=utf-8 178.944ms
+2026-10-29 23:05:39.333 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.css - null null
+2026-10-29 23:05:39.333 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - null null
+2026-10-29 23:05:39.335 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - null null
+2026-10-29 23:05:39.336 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - null null
+2026-10-29 23:05:39.336 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.js - null null
+2026-10-29 23:05:39.358 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.js - 200 null application/javascript;charset=utf-8 21.2942ms
+2026-10-29 23:05:39.372 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.css - 200 152 text/css 39.3134ms
+2026-10-29 23:05:39.373 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - 200 26479 text/css 40.0883ms
+2026-10-29 23:05:39.448 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - 200 418181 text/javascript 113.0485ms
+2026-10-29 23:05:39.448 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - 200 76613 text/javascript 112.3153ms
+2026-10-29 23:05:39.782 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-10-29 23:05:39.820 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/favicon-32x32.png - null null
+2026-10-29 23:05:39.833 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/favicon-32x32.png - 200 628 image/png 12.5741ms
+2026-10-29 23:05:40.191 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 409.3566ms
+2026-10-29 23:05:45.236 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html/health - null null
+2026-10-29 23:05:45.247 -03:00 [INF] HTTP GET /swagger/index.html/health responded 404 in 0.0574 ms
+2026-10-29 23:05:45.250 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html/health - 404 0 null 14.6277ms
+2026-10-29 23:05:45.255 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/swagger/index.html/health, Response status code: 404
+2026-10-29 23:05:50.125 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html - null null
+2026-10-29 23:05:50.137 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html - 304 null null 14.3691ms
+2026-10-29 23:05:50.242 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - null null
+2026-10-29 23:05:50.244 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.css - null null
+2026-10-29 23:05:50.244 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - null null
+2026-10-29 23:05:50.245 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - null null
+2026-10-29 23:05:50.245 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.js - null null
+2026-10-29 23:05:50.247 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - 304 null null 5.1911ms
+2026-10-29 23:05:50.251 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.css - 304 null null 7.4302ms
+2026-10-29 23:05:50.255 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - 304 null null 10.9734ms
+2026-10-29 23:05:50.258 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - 304 null null 13.376ms
+2026-10-29 23:05:50.263 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.js - 304 null null 18.059ms
+2026-10-29 23:05:50.548 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-10-29 23:05:50.616 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 67.6968ms
+2026-10-29 23:06:24.192 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/api/Pet - null null
+2026-10-29 23:06:24.207 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:06:24.308 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Domain.Common.PagedResult`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:06:26.544 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-10-29 23:06:27.987 -03:00 [INF] Executed DbCommand (236ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT COUNT(*)
+FROM "Pets" "p"
+2026-10-29 23:06:28.325 -03:00 [INF] Executed DbCommand (166ms) [Parameters=[:p_0='?' (DbType = Int32), :p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."id_pet", "t"."data_nascimento", "t"."especie_pet", "t"."id_tutor", "t"."nome_pet", "t"."peso_pet", "t0"."id_tutor", "t0"."cpf_tutor", "t0"."endereco_tutor", "t0"."nome_tutor", "t0"."telefone_tutor"
+FROM (
+    SELECT "p"."id_pet", "p"."data_nascimento", "p"."especie_pet", "p"."id_tutor", "p"."nome_pet", "p"."peso_pet"
+    FROM "Pets" "p"
+    ORDER BY "p"."nome_pet"
+    OFFSET :p_0 ROWS FETCH NEXT :p_1 ROWS ONLY
+) "t"
+INNER JOIN "Tutor" "t0" ON "t"."id_tutor" = "t0"."id_tutor"
+ORDER BY "t"."nome_pet"
+2026-10-29 23:06:28.349 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1795.1089ms.
+2026-10-29 23:06:28.359 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPetTech.Domain.Common.PagedResult`1[[VitalPetTech.Application.DTOs.PetResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-29 23:06:28.441 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 4123.0113ms
+2026-10-29 23:06:28.445 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:06:28.447 -03:00 [INF] HTTP GET /api/Pet responded 200 in 4242.2961 ms
+2026-10-29 23:06:28.459 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/api/Pet - 200 null application/json; charset=utf-8 4268.2578ms
+2026-10-29 23:06:42.854 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html/health - null null
+2026-10-29 23:06:42.861 -03:00 [INF] HTTP GET /swagger/index.html/health responded 404 in 0.0547 ms
+2026-10-29 23:06:42.864 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html/health - 404 0 null 10.6577ms
+2026-10-29 23:06:42.869 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/swagger/index.html/health, Response status code: 404
+2026-10-29 23:06:49.510 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.html - null null
+2026-10-29 23:06:49.519 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.html - 304 null null 14.0157ms
+2026-10-29 23:06:49.636 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - null null
+2026-10-29 23:06:49.637 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.css - null null
+2026-10-29 23:06:49.638 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - null null
+2026-10-29 23:06:49.638 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - null null
+2026-10-29 23:06:49.638 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/index.js - null null
+2026-10-29 23:06:49.641 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui.css - 304 null null 5.043ms
+2026-10-29 23:06:49.644 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.css - 304 null null 7.1339ms
+2026-10-29 23:06:49.648 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-bundle.js - 304 null null 10.0905ms
+2026-10-29 23:06:49.652 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/swagger-ui-standalone-preset.js - 304 null null 14.4672ms
+2026-10-29 23:06:49.659 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/index.js - 304 null null 18.4166ms
+2026-10-29 23:06:49.798 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - null null
+2026-10-29 23:06:49.855 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 56.9054ms
+2026-10-29 23:07:21.879 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/api/Pet - null null
+2026-10-29 23:07:21.886 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:07:21.889 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Domain.Common.PagedResult`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:07:21.961 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-10-29 23:07:21.984 -03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT COUNT(*)
+FROM "Pets" "p"
+2026-10-29 23:07:22.002 -03:00 [INF] Executed DbCommand (12ms) [Parameters=[:p_0='?' (DbType = Int32), :p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."id_pet", "t"."data_nascimento", "t"."especie_pet", "t"."id_tutor", "t"."nome_pet", "t"."peso_pet", "t0"."id_tutor", "t0"."cpf_tutor", "t0"."endereco_tutor", "t0"."nome_tutor", "t0"."telefone_tutor"
+FROM (
+    SELECT "p"."id_pet", "p"."data_nascimento", "p"."especie_pet", "p"."id_tutor", "p"."nome_pet", "p"."peso_pet"
+    FROM "Pets" "p"
+    ORDER BY "p"."nome_pet"
+    OFFSET :p_0 ROWS FETCH NEXT :p_1 ROWS ONLY
+) "t"
+INNER JOIN "Tutor" "t0" ON "t"."id_tutor" = "t0"."id_tutor"
+ORDER BY "t"."nome_pet"
+2026-10-29 23:07:22.007 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 44.4509ms.
+2026-10-29 23:07:22.010 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPetTech.Domain.Common.PagedResult`1[[VitalPetTech.Application.DTOs.PetResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-29 23:07:22.012 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 121.01ms
+2026-10-29 23:07:22.015 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:07:22.016 -03:00 [INF] HTTP GET /api/Pet responded 200 in 130.4409 ms
+2026-10-29 23:07:22.019 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/api/Pet - 200 null application/json; charset=utf-8 139.844ms
+2026-10-29 23:07:36.068 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/api/Pet - null null
+2026-10-29 23:07:36.073 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:07:36.075 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Domain.Common.PagedResult`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:07:36.102 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) - Validation state: "Valid"
+2026-10-29 23:07:36.127 -03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='0']
+SELECT COUNT(*)
+FROM "Pets" "p"
+2026-10-29 23:07:36.139 -03:00 [INF] Executed DbCommand (8ms) [Parameters=[:p_0='?' (DbType = Int32), :p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t"."id_pet", "t"."data_nascimento", "t"."especie_pet", "t"."id_tutor", "t"."nome_pet", "t"."peso_pet", "t0"."id_tutor", "t0"."cpf_tutor", "t0"."endereco_tutor", "t0"."nome_tutor", "t0"."telefone_tutor"
+FROM (
+    SELECT "p"."id_pet", "p"."data_nascimento", "p"."especie_pet", "p"."id_tutor", "p"."nome_pet", "p"."peso_pet"
+    FROM "Pets" "p"
+    ORDER BY "p"."nome_pet"
+    OFFSET :p_0 ROWS FETCH NEXT :p_1 ROWS ONLY
+) "t"
+INNER JOIN "Tutor" "t0" ON "t"."id_tutor" = "t0"."id_tutor"
+ORDER BY "t"."nome_pet"
+2026-10-29 23:07:36.143 -03:00 [INF] Executed action method VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 37.9524ms.
+2026-10-29 23:07:36.145 -03:00 [INF] Executing OkObjectResult, writing value of type 'VitalPetTech.Domain.Common.PagedResult`1[[VitalPetTech.Application.DTOs.PetResponse, VitalPetTech.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-10-29 23:07:36.148 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 70.2042ms
+2026-10-29 23:07:36.150 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:07:36.152 -03:00 [INF] HTTP GET /api/Pet responded 200 in 79.2965 ms
+2026-10-29 23:07:36.157 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/api/Pet - 200 null application/json; charset=utf-8 88.5671ms
+2026-10-29 23:08:44.417 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/health - null null
+2026-10-29 23:08:44.431 -03:00 [INF] Executing endpoint 'Health checks'
+2026-10-29 23:08:44.705 -03:00 [INF] Executed endpoint 'Health checks'
+2026-10-29 23:08:44.707 -03:00 [INF] HTTP GET /health responded 200 in 276.5079 ms
+2026-10-29 23:08:44.711 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/health - 200 null application/json 295.5302ms
+2026-10-29 23:08:44.766 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/favicon.ico - null null
+2026-10-29 23:08:44.770 -03:00 [INF] HTTP GET /favicon.ico responded 404 in 0.0276 ms
+2026-10-29 23:08:44.773 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/favicon.ico - 404 0 null 7.6449ms
+2026-10-29 23:08:44.779 -03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5240/favicon.ico, Response status code: 404
+2026-10-29 23:09:57.287 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5240/api/Pet?TutorId=999999999999 - null null
+2026-10-29 23:09:57.312 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:09:57.315 -03:00 [INF] Route matched with {action = "GetAll", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Domain.Common.PagedResult`1[VitalPetTech.Application.DTOs.PetResponse]]] GetAll(VitalPetTech.Domain.Common.PetFilter) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:09:57.353 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-10-29 23:09:57.398 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API) in 79.9539ms
+2026-10-29 23:09:57.401 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.GetAll (VitalPet Tech.API)'
+2026-10-29 23:09:57.403 -03:00 [INF] HTTP GET /api/Pet responded 400 in 91.1733 ms
+2026-10-29 23:09:57.406 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5240/api/Pet?TutorId=999999999999 - 400 null application/json; charset=utf-8 121.2734ms
+2026-10-29 23:11:08.930 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5240/api/Pet - application/json 142
+2026-10-29 23:11:08.943 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-10-29 23:11:08.958 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:11:09.024 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-10-29 23:11:09.026 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 63.5726ms
+2026-10-29 23:11:09.028 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-10-29 23:11:09.030 -03:00 [INF] HTTP POST /api/Pet responded 400 in 87.4961 ms
+2026-10-29 23:11:09.033 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5240/api/Pet - 400 null application/json; charset=utf-8 103.0703ms
+2026-10-29 23:11:24.841 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5240/api/Pet - application/json 133
+2026-10-29 23:11:24.845 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-10-29 23:11:24.847 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:11:24.866 -03:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-10-29 23:11:24.869 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 18.4863ms
+2026-10-29 23:11:24.872 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-10-29 23:11:24.874 -03:00 [INF] HTTP POST /api/Pet responded 400 in 28.6729 ms
+2026-10-29 23:11:24.876 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5240/api/Pet - 400 null application/json; charset=utf-8 35.3279ms
+2026-10-29 23:11:37.077 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5240/api/Pet - application/json 133
+2026-10-29 23:11:37.098 -03:00 [INF] Executing endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-10-29 23:11:37.101 -03:00 [INF] Route matched with {action = "Create", controller = "Pet"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[VitalPetTech.Application.DTOs.PetResponse]] Create(VitalPetTech.Application.DTOs.PetRequest) on controller VitalPet_Tech.Controllers.PetController (VitalPet Tech.API).
+2026-10-29 23:11:37.113 -03:00 [INF] Executing action method VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) - Validation state: "Valid"
+2026-10-29 23:11:37.219 -03:00 [INF] Executed DbCommand (22ms) [Parameters=[:id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='0']
+SELECT "t0"."id_tutor", "t0"."cpf_tutor", "t0"."endereco_tutor", "t0"."nome_tutor", "t0"."telefone_tutor", "p"."id_pet", "p"."data_nascimento", "p"."especie_pet", "p"."id_tutor", "p"."nome_pet", "p"."peso_pet"
+FROM (
+    SELECT "t"."id_tutor", "t"."cpf_tutor", "t"."endereco_tutor", "t"."nome_tutor", "t"."telefone_tutor"
+    FROM "Tutor" "t"
+    WHERE "t"."id_tutor" = :id_0
+    FETCH FIRST 1 ROWS ONLY
+) "t0"
+LEFT JOIN "Pets" "p" ON "t0"."id_tutor" = "p"."id_tutor"
+ORDER BY "t0"."id_tutor"
+2026-10-29 23:11:37.234 -03:00 [INF] Executed action VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API) in 126.0392ms
+2026-10-29 23:11:37.238 -03:00 [INF] Executed endpoint 'VitalPet_Tech.Controllers.PetController.Create (VitalPet Tech.API)'
+2026-10-29 23:11:37.241 -03:00 [ERR] HTTP POST /api/Pet responded 500 in 158.7724 ms
+VitalPetTech.Application.Exceptions.BusinessRuleException: O tutor com ID 4293 não existe.
+   at VitalPetTech.Application.Services.PetService.ObterTutorOuFalharAsync(Int32 tutorId) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 82
+   at VitalPetTech.Application.Services.PetService.CreateAsync(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 38
+   at VitalPet_Tech.Controllers.PetController.Create(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\PetController.cs:line 47
+   at lambda_method26(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-10-29 23:11:37.300 -03:00 [ERR] An unhandled exception has occurred while executing the request.
+VitalPetTech.Application.Exceptions.BusinessRuleException: O tutor com ID 4293 não existe.
+   at VitalPetTech.Application.Services.PetService.ObterTutorOuFalharAsync(Int32 tutorId) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 82
+   at VitalPetTech.Application.Services.PetService.CreateAsync(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPetTech.Application\Services\PetService.cs:line 38
+   at VitalPet_Tech.Controllers.PetController.Create(PetRequest request) in C:\estudos\Fiap\.NET\Challenge\Sprint 1 e 2\VitalPet Tech\VitalPet Tech.API\Controllers\PetController.cs:line 47
+   at lambda_method26(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-10-29 23:11:37.313 -03:00 [WRN] Regra de negócio violada. O tutor com ID 4293 não existe.
+2026-10-29 23:11:37.325 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5240/api/Pet - 422 null application/json; charset=utf-8 247.4392ms
+2026-10-29 23:12:31.521 -03:00 [INF] Application is shutting down...

@@ -1,34 +1,95 @@
+using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using VitalPet_Tech.API.Data;
+using VitalPetTech.Application.Interfaces;
+using VitalPetTech.Domain.Entities;
+using VitalPetTech.Infrastructure.Data;
+using VitalPetTech.Domain.Interfaces;
+using VitalPetTech.Tests.Integration.Helpers;
 
 namespace VitalPetTech.Tests.Integration.Fixtures;
 
-// Sobe a API inteira em memória, mas troca o Oracle real por um banco InMemory
+// Sobe a API inteira em memória, trocando o Oracle real por um banco InMemory
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
+    private readonly Dictionary<PerfilUsuario, string> _tokens = new();
+    private readonly object _lock = new();
+    private readonly string _databaseName = $"VitalPetTestDb-{Guid.NewGuid():N}";
+
+    public CustomWebApplicationFactory()
+    {
+        // O Program.cs lê essas configurações logo no início, então elas precisam
+        // existir antes do host subir. Variáveis de ambiente garantem isso.
+        Environment.SetEnvironmentVariable("Jwt__Key", "chave-secreta-somente-para-testes-0123456789");
+        Environment.SetEnvironmentVariable("Jwt__Issuer", "VitalPetTech.Tests");
+        Environment.SetEnvironmentVariable("Jwt__Audience", "VitalPetTech.Tests.Clients");
+        Environment.SetEnvironmentVariable("ConnectionStrings__OracleConnection",
+            "Data Source=localhost:1521/FAKE;User Id=teste;Password=teste;");
+        Environment.SetEnvironmentVariable("Mongo__ConnectionString", "mongodb://localhost:27017");
+        Environment.SetEnvironmentVariable("Mongo__DatabaseName", "vitalpet_tests");
+    }
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>
         {
-            // Remove o DbContext real (configurado com Oracle) que veio do Program.cs
             var descriptor = services.SingleOrDefault(
                 d => d.ServiceType == typeof(DbContextOptions<ApplicationContext>));
             if (descriptor != null)
                 services.Remove(descriptor);
 
-            // Registra um DbContext InMemory no lugar
             services.AddDbContext<ApplicationContext>(options =>
-            {
-                options.UseInMemoryDatabase("VitalPetTestDb");
-            });
+                options.UseInMemoryDatabase(_databaseName));
+            var mongoRepo = services.SingleOrDefault(d => d.ServiceType == typeof(ILeituraSensorRepository));
+            if (mongoRepo != null)
+                services.Remove(mongoRepo);
+            services.AddSingleton<ILeituraSensorRepository, FakeLeituraSensorRepository>();
         });
+    }
+
+    // Cliente já autenticado (Admin por padrão)
+    public HttpClient CreateAuthenticatedClient(PerfilUsuario perfil = PerfilUsuario.Admin)
+    {
+        var client = CreateClient();
+        client.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", ObterToken(perfil));
+        return client;
+    }
+
+    // Cria o usuário de teste uma única vez por perfil e reaproveita o token
+    private string ObterToken(PerfilUsuario perfil)
+    {
+        lock (_lock)
+        {
+            if (_tokens.TryGetValue(perfil, out var existente))
+                return existente;
+
+            using var scope = Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+            var hasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
+            var tokenService = scope.ServiceProvider.GetRequiredService<ITokenService>();
+
+            var usuario = new Usuario
+            {
+                Nome = $"Teste {perfil}",
+                Email = $"{perfil}@teste.com".ToLowerInvariant(),
+                SenhaHash = hasher.GerarHash("Senha@12345"),
+                Perfil = perfil,
+                CriadoEm = DateTime.UtcNow
+            };
+            context.Usuarios.Add(usuario);
+            context.SaveChanges();
+
+            var token = tokenService.Gerar(usuario).AccessToken;
+            _tokens[perfil] = token;
+            return token;
+        }
     }
 }
 
-// Define uma "coleção" de testes que compartilham a mesma factory (sobe a API uma única vez)
+// Todos os testes de integração compartilham a mesma factory (a API sobe uma única vez)
 [CollectionDefinition("API Integration Tests")]
 public class ApiCollection : ICollectionFixture<CustomWebApplicationFactory>
 {
