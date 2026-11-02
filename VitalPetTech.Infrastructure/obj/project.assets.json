@@ -3442,6 +3442,7 @@
     "net8.0": [
       "Microsoft.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
+      "Microsoft.EntityFrameworkCore.Relational >= 8.0.10",
       "MongoDB.Driver >= 2.30.0",
       "Oracle.EntityFrameworkCore >= 8.23.60",
       "System.IdentityModel.Tokens.Jwt >= 7.1.2",
@@ -3505,6 +3506,10 @@
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
+            "target": "Package",
+            "version": "[8.0.10, )"
+          },
+          "Microsoft.EntityFrameworkCore.Relational": {
             "target": "Package",
             "version": "[8.0.10, )"
           },

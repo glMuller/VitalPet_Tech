@@ -16,6 +16,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     private readonly Dictionary<PerfilUsuario, string> _tokens = new();
     private readonly object _lock = new();
+    private readonly string _databaseName = $"VitalPetTestDb-{Guid.NewGuid():N}";
 
     public CustomWebApplicationFactory()
     {
@@ -40,7 +41,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 services.Remove(descriptor);
 
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseInMemoryDatabase("VitalPetTestDb"));
+                options.UseInMemoryDatabase(_databaseName));
             var mongoRepo = services.SingleOrDefault(d => d.ServiceType == typeof(ILeituraSensorRepository));
             if (mongoRepo != null)
                 services.Remove(mongoRepo);

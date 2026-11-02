@@ -16,7 +16,9 @@ public static class DependencyInjection
         this IServiceCollection services, string connectionString, JwtSettings jwt, MongoSettings mongo)
     {
         // Oracle (relacional)
-        services.AddDbContext<ApplicationContext>(options => options.UseOracle(connectionString));
+        // Evita gerar BOOLEAN/TRUE/FALSE, indisponíveis no SQL do Oracle anterior ao 23c.
+        services.AddDbContext<ApplicationContext>(options => options.UseOracle(connectionString,
+            oracle => oracle.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19)));
 
         services.AddScoped<ITutorRepository, TutorRepository>();
         services.AddScoped<IPetRepository, PetRepository>();

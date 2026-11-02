@@ -1306,6 +1306,7 @@
       "VitalPetTech.Infrastructure/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.10",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.10",
           "MongoDB.Driver": "2.30.0",
           "Oracle.EntityFrameworkCore": "8.23.60",
           "System.IdentityModel.Tokens.Jwt": "7.1.2",

@@ -12,7 +12,8 @@ public class ApplicationContextFactory : IDesignTimeDbContextFactory<Application
             ?? "Data Source=localhost:1521/XEPDB1;User Id=design;Password=design;";
 
         var options = new DbContextOptionsBuilder<ApplicationContext>()
-            .UseOracle(connectionString)
+            .UseOracle(connectionString,
+                oracle => oracle.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19))
             .Options;
 
         return new ApplicationContext(options);

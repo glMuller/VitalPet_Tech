@@ -1,0 +1,2793 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 01edfd7..46984da 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -2,131 +2,316 @@[m
+ [m
+ ## 📖 Descrição do Projeto[m
+ [m
+[31m-A VitalPet Tech API é um sistema back-end desenvolvido em C# com .NET e Entity Framework Core. O projeto tem como objetivo gerenciar a saúde e o monitoramento de pets. Ele permite o cadastro de tutores e seus animais, o registro de histórico médico (eventos clínicos como vacinas e consultas) e a recepção de alertas gerados por sensores IoT (monitoramento de batimento cardíaco, temperatura e localização do animal).[m
+[32m+[m[32mA VitalPet Tech API é um sistema back-end em C# com .NET 8 para gerenciar a saúde e o monitoramento de pets. Ela permite o cadastro de tutores e seus animais, o registro do histórico médico (eventos clínicos como vacinas e consultas), a emissão de alertas de saúde e a recepção de leituras de sensores IoT (batimento cardíaco, temperatura e localização do animal).[m
+ [m
+[31m-Além das funcionalidades de cadastro e consulta, a API conta com uma camada de **Monitoramento e Observabilidade** (Health Checks, logging estruturado com Serilog e distributed tracing com OpenTelemetry) e uma suíte de **testes automatizados** (unitários e de integração, seguindo o padrão AAA) cobrindo Tutores, Pets, Eventos Clínicos e Alertas.[m
+[32m+[m[32mNesta versão final, o projeto consolida todas as sprints:[m
+ [m
+[31m-Projeto desenvolvido por: Gabriel Müller RM561995 Jonas Santos RM563234 Pedro Ferreira RM565824[m
+[32m+[m[32m* **Clean Architecture** em 4 camadas (Domain, Application, Infrastructure e API), com Repository, SOLID e injeção de dependência.[m
+[32m+[m[32m* **API RESTful** com paginação, ordenação, filtros e **HATEOAS** nos endpoints de consulta.[m
+[32m+[m[32m* **Autenticação e autorização com JWT**, com perfis `Admin` e `Usuario`.[m
+[32m+[m[32m* **Persistência híbrida**: Oracle (EF Core com migrações) para os dados relacionais e **MongoDB** para as leituras dos sensores.[m
+[32m+[m[32m* **Tratamento global de exceções** com respostas no padrão `ProblemDetails`.[m
+[32m+[m[32m* **Observabilidade**: Health Checks (Oracle e MongoDB), logging estruturado com Serilog e tracing/métricas com OpenTelemetry.[m
+[32m+[m[32m* **Testes automatizados** (unitários e de integração) no padrão AAA.[m
+[32m+[m
+[32m+[m[32m## 👥 Integrantes[m
+[32m+[m
+[32m+[m[32m* Gabriel Müller — RM561995[m
+[32m+[m[32m* Jonas Santos — RM563234[m
+[32m+[m[32m* Pedro Ferreira — RM565824[m
+[32m+[m
+[32m+[m[32m## 🏛️ Arquitetura[m
+[32m+[m
+[32m+[m[32mO projeto segue a Clean Architecture. As dependências sempre apontam para dentro: a camada de domínio não conhece nenhuma das outras.[m
+[32m+[m
+[32m+[m[32m```mermaid[m
+[32m+[m[32mflowchart LR[m
+[32m+[m[32m    Cliente([Cliente HTTP / Swagger]) --> API[m
+[32m+[m
+[32m+[m[32m    subgraph Solucao [Solução VitalPet Tech][m
+[32m+[m[32m        API["API<br/>Controllers, HATEOAS, JWT,<br/>exceções globais, Health Checks"][m
+[32m+[m[32m        APP["Application<br/>Services, DTOs, validações,<br/>regras de negócio"][m
+[32m+[m[32m        DOM["Domain<br/>Entidades e interfaces<br/>de repositório"][m
+[32m+[m[32m        INF["Infrastructure<br/>EF Core, MongoDB,<br/>repositórios, JWT, hash de senha"][m
+[32m+[m
+[32m+[m[32m        API --> APP[m
+[32m+[m[32m        APP --> DOM[m
+[32m+[m[32m        INF --> APP[m
+[32m+[m[32m        INF --> DOM[m
+[32m+[m[32m        API -. registra a injeção de dependência .-> INF[m
+[32m+[m[32m    end[m
+[32m+[m
+[32m+[m[32m    INF --> ORA[(Oracle<br/>dados relacionais)][m
+[32m+[m[32m    INF --> MONGO[(MongoDB<br/>leituras de sensores)][m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m| Camada | Responsabilidade |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| **Domain** | Entidades (`Tutor`, `Pet`, `EventoClinico`, `Alerta`, `LeituraSensor`, `Usuario`), interfaces de repositório e tipos de paginação e filtro. Não depende de nenhum framework. |[m
+[32m+[m[32m| **Application** | Services com as regras de negócio, DTOs de entrada e saída com validações, exceções de negócio e contratos de segurança. |[m
+[32m+[m[32m| **Infrastructure** | `ApplicationContext` (EF Core + Oracle), mapeamento Fluent API, migrações, repositórios concretos, repositório MongoDB, hash de senha (PBKDF2) e geração do JWT. |[m
+[32m+[m[32m| **API** | Controllers, HATEOAS, autenticação/autorização, handler global de exceções, Swagger, Serilog, OpenTelemetry e Health Checks. |[m
+[32m+[m
+[32m+[m[32m**Princípios aplicados:** inversão de dependência (os Services dependem de interfaces), responsabilidade única (Controller só orquestra, Service decide, Repository persiste) e DRY (`BaseRepository` e mapeamentos centralizados).[m
+ [m
+ ## 🛠️ Instruções de Instalação e Execução[m
+ [m
+ ### Pré-requisitos[m
+ [m
+[31m-* [.NET SDK](https://dotnet.microsoft.com/download) (Versão 8.0 ou superior)[m
+[31m-* SQL Server (ou outro banco de dados relacional compatível configurado)[m
+[31m-* Uma IDE de sua preferência (Visual Studio, VS Code, Rider)[m
+[32m+[m[32m* [.NET SDK 8.0](https://dotnet.microsoft.com/download)[m
+[32m+[m[32m* Acesso a um banco **Oracle** (usado pela FIAP)[m
+[32m+[m[32m* **Docker Desktop** iniciado, com suporte a contêineres Linux, para executar o MongoDB local; alternativamente, uma instância MongoDB acessível[m
+[32m+[m[32m* **PowerShell** para os comandos de configuração abaixo[m
+[32m+[m[32m* Uma IDE de sua preferência (Visual Studio, VS Code, Rider), opcional para execução pelo terminal[m
+[32m+[m[32m* Ferramenta do EF Core: `dotnet tool install --global dotnet-ef --version 8.0.10`[m
+[32m+[m
+[32m+[m[32m### Passo a passo[m
+[32m+[m
+[32m+[m[32m1. Clone o repositório e entre na pasta que contém `VitalPet Tech.sln`:[m
+[32m+[m[32m   ```bash[m
+[32m+[m[32m   git clone https://github.com/glMuller/VitalPet_Tech.git[m
+[32m+[m[32m   cd VitalPet_Tech[m
+[32m+[m[32m   ```[m
+[32m+[m[32m2. Inicie o **Docker Desktop** e crie o MongoDB local na primeira execução:[m
+[32m+[m[32m   ```powershell[m
+[32m+[m[32m   docker run --name vitalpet-mongo --detach --publish 127.0.0.1:27017:27017 --volume vitalpet-mongo-data:/data/db --restart unless-stopped mongo:7[m
+[32m+[m[32m   docker ps --filter "name=vitalpet-mongo"[m
+[32m+[m[32m   ```[m
+[32m+[m[32m   O contêiner expõe o MongoDB somente na máquina local, na porta `27017`. O volume `vitalpet-mongo-data` preserva os dados entre reinicializações. Esse exemplo local não configura autenticação e não deve ser exposto publicamente.[m
+[32m+[m
+[32m+[m[32m   Se o contêiner `vitalpet-mongo` já existir, use `docker start vitalpet-mongo` em vez de executar `docker run` novamente. Para conferir a inicialização: `docker logs --tail 30 vitalpet-mongo`.[m
+[32m+[m
+[32m+[m[32m   Cada avaliador executa seu próprio contêiner. Não é necessário que o computador do autor esteja ligado. O banco MongoDB local começa vazio; o banco e a coleção são criados ao inserir a primeira leitura. Com outra instância MongoDB, substitua a connection string do próximo passo e dispense o contêiner local.[m
+[32m+[m[32m3. Configure os segredos **fora do repositório**, com o `user-secrets` (rode na raiz da solução):[m
+[32m+[m[32m   ```powershell[m
+[32m+[m[32m   # Informe uma conexão Oracle completa e válida, com usuário e senha.[m
+[32m+[m[32m   dotnet user-secrets set "ConnectionStrings:OracleConnection" "SUA_CONNECTION_STRING_ORACLE" --project "VitalPet Tech.API"[m
+[32m+[m
+[32m+[m[32m   # MongoDB do contêiner local iniciado no passo anterior[m
+[32m+[m[32m   dotnet user-secrets set "Mongo:ConnectionString" "mongodb://localhost:27017" --project "VitalPet Tech.API"[m
+[32m+[m
+[32m+[m[32m   # Chave do JWT (mínimo 32 caracteres) - gera uma aleatória[m
+[32m+[m[32m   $b = New-Object byte[] 48[m
+[32m+[m[32m   [Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($b)[m
+[32m+[m[32m   dotnet user-secrets set "Jwt:Key" ([Convert]::ToBase64String($b)) --project "VitalPet Tech.API"[m
+[32m+[m[32m   ```[m
+[32m+[m[32m   O projeto já possui `UserSecretsId`; não é necessário inicializá-lo novamente. Os segredos são locais ao usuário e **não acompanham o clone do GitHub**. O avaliador deve configurar suas credenciais Oracle ou recebê-las por um canal separado. Não publique senhas nem a chave JWT no repositório.[m
+[32m+[m
+[32m+[m[32m   O `appsettings.json` guarda configurações não sensíveis, incluindo o banco Mongo `vitalpet`, emissor e audiência do JWT. Uma conexão Oracle de exemplo tem o formato `Data Source=SERVIDOR:1521/NOME_DO_SERVICO;User Id=USUARIO;Password=SENHA;`; use o formato SID ou service name fornecido pelo seu ambiente Oracle.[m
+[32m+[m[32m4. Restaure os pacotes e crie as tabelas no Oracle com as migrações. Use um esquema destinado ao projeto, com permissão para criar tabelas. A fábrica de migrações lê `VITALPET_ORACLE_CONNECTION`; informe nela **a mesma conexão Oracle** configurada no passo anterior:[m
+[32m+[m[32m   ```powershell[m
+[32m+[m[32m   dotnet restore "VitalPet Tech.sln"[m
+[32m+[m[32m   $env:VITALPET_ORACLE_CONNECTION = "SUA_CONNECTION_STRING_ORACLE"[m
+[32m+[m[32m   dotnet ef database update --project VitalPetTech.Infrastructure --startup-project "VitalPet Tech.API" --context VitalPetTech.Infrastructure.Data.ApplicationContext[m
+[32m+[m[32m   Remove-Item Env:VITALPET_ORACLE_CONNECTION[m
+[32m+[m[32m   ```[m
+[32m+[m[32m   A variável é removida após o comando; a API continua usando a conexão configurada nos user-secrets. A configuração do provedor usa compatibilidade SQL Oracle 19 para evitar literais booleanos incompatíveis com versões anteriores ao Oracle 23c.[m
+[32m+[m[32m5. Execute a aplicação com o perfil HTTP:[m
+[32m+[m[32m   ```bash[m
+[32m+[m[32m   dotnet run --project "VitalPet Tech.API" --launch-profile http[m
+[32m+[m[32m   ```[m
+[32m+[m[32m6. Acesse o [Swagger em HTTP](http://localhost:5240/swagger/index.html) e consulte o [Health Check](http://localhost:5240/health). O resultado esperado do Health Check é HTTP `200`, com Oracle e MongoDB em `Healthy`.[m
+[32m+[m
+[32m+[m[32m   No Rider, selecione o perfil `http` para usar apenas `http://localhost:5240`. O perfil `https` disponibiliza a mesma API em `https://localhost:7143` e `http://localhost:5240`; o HTTPS utiliza um certificado de desenvolvimento que precisa ser confiável no computador. O Swagger é habilitado somente em `Development`, ambiente já definido pelos perfis locais.[m
+[32m+[m
+[32m+[m[32m### Problemas comuns ao iniciar[m
+[32m+[m
+[32m+[m[32m| Sintoma | Verificação |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| Porta `5240` ocupada / `address already in use` | Encerre a execução anterior da API antes de iniciá-la novamente pelo Rider ou terminal. |[m
+[32m+[m[32m| Docker não conecta ao Engine | Inicie o Docker Desktop e aguarde o Engine ficar em execução. |[m
+[32m+[m[32m| Nome `vitalpet-mongo` já está em uso | Reutilize o contêiner existente com `docker start vitalpet-mongo`. |[m
+[32m+[m[32m| `/health` retorna `503` | Consulte qual entrada está `Unhealthy`. Para MongoDB, confira o contêiner e a connection string; para Oracle, confira conectividade, credenciais e disponibilidade do servidor. |[m
+[32m+[m[32m| Registro retorna `500` | Consulte o log local. Confirme também que as migrações foram aplicadas no mesmo esquema Oracle usado pela API. |[m
+[32m+[m[32m| Configuração de JWT ou Mongo ausente | Configure os user-secrets para o projeto `VitalPet Tech.API`, no mesmo usuário que executa a aplicação. |[m
+[32m+[m
+[32m+[m[32m### Primeiro acesso (autenticação)[m
+[32m+[m
+[32m+[m[32m1. Registre um usuário em `POST /api/Auth/registrar`. **O primeiro usuário cadastrado recebe o perfil `Admin`**, e os seguintes recebem `Usuario`.[m
+[32m+[m[32m2. Faça login em `POST /api/Auth/login` e copie o `accessToken`.[m
+[32m+[m[32m3. No Swagger, clique em **Authorize** e cole apenas o token. Em chamadas diretas, envie o header `Authorization: Bearer {token}`.[m
+[32m+[m
+[32m+[m[32mExemplo de corpo para registro (substitua os dados e escolha sua própria senha):[m
+ [m
+[31m-### Passo a passo para rodar o projeto[m
+[32m+[m[32m```json[m
+[32m+[m[32m{[m
+[32m+[m[32m  "nome": "Avaliador",[m
+[32m+[m[32m  "email": "avaliador@example.com",[m
+[32m+[m[32m  "senha": "SenhaDeExemplo123!"[m
+[32m+[m[32m}[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mNo login, envie apenas `email` e `senha`. Registro e login são públicos, mesmo que o Swagger mostre o cadeado devido à definição global de segurança. O primeiro usuário é determinado pelo conteúdo do **esquema Oracle**, e não pelo MongoDB ou pelo computador; em um esquema já populado, o novo usuário pode receber `Usuario`.[m
+[32m+[m
+[32m+[m[32m### Roteiro de verificação funcional[m
+[32m+[m
+[32m+[m[32m1. Confirme `/health` com HTTP `200`.[m
+[32m+[m[32m2. Registre um usuário (`201`), faça login (`200`) e autorize o Swagger com o token.[m
+[32m+[m[32m3. Cadastre um Tutor (`201`) e use o `id` retornado para cadastrar um Pet em `idTutor` (`201`).[m
+[32m+[m[32m4. Use o `id` do Pet em `idPet` para cadastrar EventoClinico, Alerta e LeituraSensor (`201`). Envie os nomes dos enums mostrados no Swagger, como `Batimento` e `Critico`.[m
+[32m+[m[32m5. Consulte os registros e as listas com filtros/paginação (`200`). Os GETs incluem links HATEOAS; `next` e `prev` aparecem quando há páginas correspondentes.[m
+[32m+[m[32m6. Atualize os recursos relacionais com PUT (`204`, sem corpo). O endpoint de leituras oferece inclusão e consulta.[m
+[32m+[m[32m7. Para excluir dados de teste, use uma conta Admin e remova os recursos relacionais com DELETE (`204`, sem corpo). Uma conta `Usuario` recebe `403` nessa operação.[m
+ [m
+[31m-1. Clone o repositório: git clone https://github.com/glMuller/VitalPet_Tech.git[m
+[31m-2. Configure o Banco de Dados: Abra o arquivo `appsettings.json` e configure a sua string de conexão na chave `ConnectionStrings:ConexaoBanco` (RM561995 - 200107 apontando para o seu servidor local.[m
+[31m-3. Crie o Banco de Dados (Migrations): Abra o terminal na raiz do projeto e execute o comando: `dotnet ef database update`[m
+[31m-4. Execute a aplicação: No terminal, execute: `dotnet run`[m
+[31m-5. Acesse a documentação interativa: Com a aplicação rodando, abra o navegador e acesse o Swagger para testar os endpoints: `http://localhost:porta/swagger`[m
+[32m+[m[32mAs leituras MongoDB não são removidas automaticamente ao excluir um Pet/Tutor do Oracle. Considere essa retenção de histórico ao preparar os dados de demonstração.[m
+[32m+[m
+[32m+[m[32m| Endpoint | Acesso |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| `/health`, `/api/Auth/*` | Público |[m
+[32m+[m[32m| Demais endpoints de consulta, criação e atualização | Qualquer usuário autenticado |[m
+[32m+[m[32m| `DELETE` em qualquer recurso | Somente perfil `Admin` |[m
+ [m
+ ## 📌 Documentação das Rotas[m
+ [m
+[31m-Abaixo estão listados os principais endpoints da API.[m
+[32m+[m[32mA especificação completa está em [`docs/swagger.json`](docs/swagger.json) (OpenAPI), e também no Swagger da aplicação. Abaixo estão os principais endpoints.[m
+[32m+[m
+[32m+[m[32m### 📄 Paginação, ordenação e filtros[m
+[32m+[m
+[32m+[m[32mTodas as listagens (`GET` na raiz do recurso) aceitam:[m
+[32m+[m
+[32m+[m[32m| Parâmetro | Descrição |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| `page` | Página (padrão `1`) |[m
+[32m+[m[32m| `pageSize` | Itens por página (padrão `10`, máximo `50`) |[m
+[32m+[m[32m| `orderBy` | Campo de ordenação (lista fixa por recurso, valores inválidos usam o padrão) |[m
+[32m+[m[32m| `descending` | `true` para ordem decrescente |[m
+[32m+[m
+[32m+[m[32mA resposta traz `items`, `page`, `pageSize`, `totalCount`, `totalPages` e `links` (`self`, `first`, `last`, `prev`, `next`, `create`). Cada item também traz seus próprios `links` (HATEOAS).[m
+[32m+[m
+[32m+[m[32m### 🔐 Autenticação (/api/Auth)[m
+[32m+[m
+[32m+[m[32m* `POST /api/Auth/registrar`: Registra um novo usuário.[m
+[32m+[m[32m* `POST /api/Auth/login`: Autentica e devolve o token JWT.[m
+ [m
+ ### 👤 Tutores (/api/Tutor)[m
+ [m
+[31m-* `GET /api/Tutor`: Retorna todos os tutores cadastrados e seus pets.[m
+[31m-* `GET /api/Tutor/{id}`: Retorna os dados de um tutor específico e seus pets.[m
+[31m-* `POST /api/Tutor`: Cadastra um novo tutor.[m
+[31m-* `PUT /api/Tutor/{id}`: Atualiza os dados de um tutor existente.[m
+[31m-* `DELETE /api/Tutor/{id}`: Remove um tutor do sistema.[m
+[32m+[m[32m* `GET /api/Tutor`: Lista tutores. Filtro: `nome`. Ordenação: `nome`, `id`.[m
+[32m+[m[32m* `GET /api/Tutor/{id}`: Retorna um tutor e o resumo dos seus pets.[m
+[32m+[m[32m* `POST /api/Tutor`: Cadastra um tutor.[m
+[32m+[m[32m* `PUT /api/Tutor/{id}`: Atualiza um tutor.[m
+[32m+[m[32m* `DELETE /api/Tutor/{id}`: Remove um tutor (Admin).[m
+ [m
+ ### 🐾 Pets (/api/Pet)[m
+ [m
+[31m-* `GET /api/Pet`: Retorna todos os pets e os dados de seus respectivos tutores.[m
+[31m-* `GET /api/Pet/{id}`: Retorna um pet específico.[m
+[31m-* `GET /api/Pet/especie/{especie}`: Retorna todos os pets filtrados por uma espécie específica.[m
+[31m-* `GET /api/Pet/tutor/{tutorId}`: Retorna todos os pets pertencentes a um tutor específico.[m
+[31m-* `POST /api/Pet`: Cadastra um novo pet.[m
+[31m-* `PUT /api/Pet/{id}`: Atualiza os dados de um pet.[m
+[31m-* `DELETE /api/Pet/{id}`: Remove um pet.[m
+[32m+[m[32m* `GET /api/Pet`: Lista pets. Filtros: `especie`, `tutorId`. Ordenação: `nome`, `especie`, `peso`, `dataNascimento`, `id`.[m
+[32m+[m[32m* `GET /api/Pet/{id}`: Retorna um pet.[m
+[32m+[m[32m* `POST /api/Pet`: Cadastra um pet (o tutor precisa existir).[m
+[32m+[m[32m* `PUT /api/Pet/{id}`: Atualiza um pet.[m
+[32m+[m[32m* `DELETE /api/Pet/{id}`: Remove um pet (Admin).[m
+ [m
+ ### 🏥 Eventos Clínicos (/api/EventoClinico)[m
+ [m
+[31m-* `GET /api/EventoClinico`: Retorna todos os registros clínicos.[m
+[31m-* `GET /api/EventoClinico/{id}`: Retorna um evento clínico específico.[m
+[31m-* `GET /api/EventoClinico/pet/{petId}`: Retorna o histórico médico de um pet, ordenado do mais recente para o mais antigo.[m
+[31m-* `POST /api/EventoClinico`: Adiciona um novo evento clínico.[m
+[31m-* `PUT /api/EventoClinico/{id}`: Atualiza os dados de um evento.[m
+[31m-* `DELETE /api/EventoClinico/{id}`: Remove um evento clínico.[m
+[32m+[m[32m* `GET /api/EventoClinico`: Lista eventos, do mais recente para o mais antigo por padrão. Filtros: `petId`, `tipo`. Ordenação: `data`, `tipo`, `clinica`, `id`.[m
+[32m+[m[32m* `GET /api/EventoClinico/{id}`: Retorna um evento.[m
+[32m+[m[32m* `POST /api/EventoClinico`: Adiciona um evento (o pet precisa existir).[m
+[32m+[m[32m* `PUT /api/EventoClinico/{id}`: Atualiza um evento.[m
+[32m+[m[32m* `DELETE /api/EventoClinico/{id}`: Remove um evento (Admin).[m
+ [m
+[31m-### 🚨 Alertas de Sensores (/api/Alerta)[m
+[32m+[m[32m### 🚨 Alertas (/api/Alerta)[m
+ [m
+[31m-* `GET /api/Alerta`: Retorna todo o histórico de alertas emitidos pelos sensores.[m
+[31m-* `GET /api/Alerta/{id}`: Retorna os detalhes de um alerta específico.[m
+[31m-* `GET /api/Alerta/pendentes`: Retorna apenas os alertas que não foram resolvidos.[m
+[31m-* `POST /api/Alerta`: Registra um novo alerta no sistema.[m
+[32m+[m[32m* `GET /api/Alerta`: Lista alertas, do mais recente para o mais antigo por padrão. Filtros: `petId`, `resolvido`, `severidade`, `tipoAlerta`. Use `?resolvido=false` para ver os pendentes. Ordenação: `timestamp`, `severidade`, `tipo`, `id`.[m
+[32m+[m[32m* `GET /api/Alerta/{id}`: Retorna um alerta.[m
+[32m+[m[32m* `POST /api/Alerta`: Registra um alerta (sempre nasce não resolvido).[m
+ * `PUT /api/Alerta/{id}`: Atualiza um alerta (marca como resolvido).[m
+[31m-* `DELETE /api/Alerta/{id}`: Remove um alerta do histórico.[m
+[32m+[m[32m* `DELETE /api/Alerta/{id}`: Remove um alerta (Admin).[m
+[32m+[m
+[32m+[m[32m### 📡 Leituras de Sensores (/api/LeituraSensor) — MongoDB[m
+[32m+[m
+[32m+[m[32m* `GET /api/LeituraSensor`: Lista leituras, da mais recente para a mais antiga por padrão. Filtros: `petId`, `tipo`, `de`, `ate`. Ordenação: `timestamp`, `valor`, `tipo`.[m
+[32m+[m[32m* `GET /api/LeituraSensor/{id}`: Retorna uma leitura.[m
+[32m+[m[32m* `POST /api/LeituraSensor`: Registra uma leitura (o pet precisa existir). Batimento e temperatura exigem `valor`, e localização exige `latitude` e `longitude`.[m
+[32m+[m
+[32m+[m[32m> As leituras ficam no MongoDB (volume alto, sem relacionamentos). Os alertas ficam no Oracle.[m
+[32m+[m
+[32m+[m[32m### ⚠️ Padrão de erros[m
+[32m+[m
+[32m+[m[32m| Status | Significado |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| `400` | Erro de validação dos dados enviados |[m
+[32m+[m[32m| `401` | Sem token, token inválido ou credenciais incorretas |[m
+[32m+[m[32m| `403` | Usuário autenticado sem permissão (ex: `DELETE` sem ser Admin) |[m
+[32m+[m[32m| `404` | Recurso não encontrado |[m
+[32m+[m[32m| `422` | Regra de negócio violada (ex: pet para um tutor inexistente) |[m
+[32m+[m[32m| `500` | Erro interno, sem detalhes expostos |[m
+[32m+[m
+[32m+[m[32mAs exceções de negócio e falhas internas tratadas pelo handler global geram `ProblemDetails`, com `status`, `title`, `instance` e `traceId`; `detail` descreve erros de negócio e não expõe detalhes internos em `500`. Erros automáticos de validação usam `ValidationProblemDetails`, incluindo o campo `errors`. Respostas `401`/`403` geradas pelo middleware de autenticação/autorização podem vir sem corpo; o `401` de credenciais inválidas no login é tratado pelo handler global.[m
+ [m
+ ## 📊 Monitoramento e Observabilidade[m
+ [m
+ ### Health Check[m
+ [m
+[31m-A API expõe um endpoint de verificação de saúde que valida a conectividade com o banco de dados Oracle:[m
+[31m-[m
+[32m+[m[32m```[m
+[32m+[m[32mGET /health[m
+[32m+[m[32m```[m
+ [m
+[31m-**Exemplo de resposta (aplicação saudável):**[m
+[32m+[m[32mValida a conectividade com o **Oracle** e com o **MongoDB**:[m
+ [m
+ ```json[m
+ {[m
+   "status": "Healthy",[m
+[31m-  "totalDuration": "00:00:00.7050745",[m
+   "entries": {[m
+[31m-    "oracle-database": {[m
+[31m-      "data": {},[m
+[31m-      "duration": "00:00:00.6985029",[m
+[31m-      "status": "Healthy",[m
+[31m-      "tags": ["db", "oracle"][m
+[31m-    }[m
+[32m+[m[32m    "oracle-database": { "status": "Healthy", "tags": ["db", "oracle"] },[m
+[32m+[m[32m    "mongodb": { "status": "Healthy", "tags": ["db", "mongodb"] }[m
+   }[m
+ }[m
+ ```[m
+ [m
+[31m-Se o banco Oracle estiver indisponível, o campo `status` retorna `Unhealthy` e o endpoint responde com HTTP 503 (Service Unavailable).[m
+[32m+[m[32mSe algum banco estiver indisponível, o `status` passa a `Unhealthy` e a resposta é `503`. O endpoint é público, para ser consumido por orquestradores (Kubernetes, Docker, load balancers).[m
+ [m
+[31m-**Como monitorar a aplicação:**[m
+[31m-- Acesse `https://localhost:{porta}/health` no navegador, Postman ou via `curl` para um diagnóstico rápido do estado da API e do banco de dados.[m
+[31m-- O endpoint pode ser integrado a ferramentas de orquestração (Kubernetes liveness/readiness probes, Docker healthcheck, load balancers) para decidir automaticamente se a instância deve receber tráfego.[m
+[31m-- **Logs estruturados** (via Serilog) são gravados em tempo real no console e também persistidos em arquivo, em `Logs/log-{data}.txt`, com rotação diária. Cada requisição HTTP é registrada automaticamente com método, rota, status de resposta e tempo de execução.[m
+[31m-- **Tracing e métricas** (via OpenTelemetry) rastreiam o ciclo de vida das requisições entre as camadas da aplicação e expõem tempo de resposta e taxa de erros, exportados para o console durante o desenvolvimento.[m
+[32m+[m[32m```bash[m
+[32m+[m[32mcurl http://localhost:5240/health[m
+[32m+[m[32m```[m
+ [m
+[31m-## ✅ Como Executar os Testes[m
+[32m+[m[32m### Logging estruturado[m
+ [m
+[31m-O projeto possui dois projetos de teste, organizados por responsabilidade:[m
+[32m+[m[32mO **Serilog** grava no console e em arquivo (`Logs/log-{data}.txt`, com rotação diária). Cada requisição HTTP é registrada com método, rota, status e tempo de resposta. Os Services registram eventos de negócio com níveis `Information` e `Warning`, e o handler global registra falhas inesperadas como `Error`.[m
+ [m
+[31m-* **`VitalPetTech.Tests.Unit`**: testes unitários de entidades (validação de dados) e controllers (lógica de negócio, isolada via banco InMemory e mocking com Moq), cobrindo Tutor, Pet, EventoClinico e Alerta.[m
+[31m-* **`VitalPetTech.Tests.Integration`**: testes de integração que sobem a API completa em memória (via `WebApplicationFactory`) e validam o fluxo HTTP real, incluindo respostas de sucesso e de erro.[m
+[32m+[m[32m### Tracing e métricas[m
+ [m
+[31m-### Rodando todos os testes[m
+[32m+[m[32mO **OpenTelemetry** instrumenta requisições ASP.NET Core e HttpClient, exportando traces e métricas para o console. A configuração atual habilita esses exportadores em todos os ambientes; não há painel externo configurado. Um exportador para outro destino pode ser configurado em `Program.cs`.[m
+ [m
+[31m-Na raiz da solução:[m
+[32m+[m[32m## ✅ Como Executar os Testes[m
+ [m
+ ```bash[m
+[31m-dotnet test[m
+[32m+[m[32mdotnet test "VitalPet Tech.sln" -m:1[m
+ ```[m
+ [m
+[31m-### Rodando apenas um projeto de teste[m
+[32m+[m[32mPara rodar um projeto específico ou um teste isolado:[m
+ [m
+ ```bash[m
+[31m-dotnet test VitalPetTech.Tests.Unit[m
+[31m-dotnet test VitalPetTech.Tests.Integration[m
+[32m+[m[32mdotnet test "VitalPetTech.Tests.Unit/VitalPetTech.Tests.Unit.csproj" -m:1[m
+[32m+[m[32mdotnet test "VitalPetTech.Tests.Integration/VitalPetTech.Tests.Integration.csproj" -m:1[m
+[32m+[m[32mdotnet test "VitalPet Tech.sln" -m:1 --filter "NomeDoTeste"[m
+ ```[m
+ [m
+[31m-### Rodando um teste específico[m
+[32m+[m[32m| Projeto | O que cobre | Como isola dependências |[m
+[32m+[m[32m|---|---|---|[m
+[32m+[m[32m| `VitalPetTech.Tests.Unit` | Domain, Application (Services e DTOs), alguns repositórios EF e compatibilidade do SQL Oracle gerado | **Moq** nos repositórios e no logger, **EF Core InMemory** em testes de repositório e geração de SQL sem conexão |[m
+[32m+[m[32m| `VitalPetTech.Tests.Integration` | Fluxo HTTP completo via `WebApplicationFactory`: autenticação, autorização por perfil, paginação, filtros, HATEOAS e erros | Oracle trocado por InMemory e MongoDB por um repositório em memória |[m
+[32m+[m
+[32m+[m[32m**Convenções:** padrão **AAA** (Arrange, Act, Assert) e nomenclatura `MetodoTestado_Cenario_ResultadoEsperado`. A maioria dos testes HTTP compartilha uma **Collection Fixture** (`CustomWebApplicationFactory`); o teste de registro/login cria sua própria factory para validar o primeiro usuário em um banco isolado. Os testes automatizados não precisam de Oracle, MongoDB nem de segredos pessoais configurados. Hash de senha e JWT são exercitados pelo fluxo de integração; não há testes unitários dedicados para todos os componentes de segurança.[m
+[32m+[m
+[32m+[m[32mPara coletar cobertura com o coletor já referenciado nos projetos de teste:[m
+ [m
+ ```bash[m
+[31m-dotnet test --filter "NomeDoMetodoDeTeste"[m
+[32m+[m[32mdotnet test "VitalPet Tech.sln" -m:1 --collect:"XPlat Code Coverage" --results-directory TestResults[m
+ ```[m
+ [m
+[31m-### Convenções adotadas[m
+[32m+[m[32mOs relatórios `coverage.cobertura.xml` ficam em subpastas de `TestResults`. Os testes com InMemory e repositório simulado validam o fluxo da API, mas não substituem a verificação de migrações, conectividade e consultas nos bancos reais. Para isso, siga também o roteiro funcional acima.[m
+ [m
+[31m-* Nomenclatura dos testes: `MetodoTestado_Cenario_ResultadoEsperado`[m
+[31m-* Todos os testes seguem o padrão **AAA** (Arrange, Act, Assert)[m
+[31m-* Testes de integração compartilham uma instância da API via **Collection Fixture** (`CustomWebApplicationFactory`), evitando subir a aplicação repetidamente a cada teste[m
+[31m-* O banco de dados Oracle é substituído por **EF Core InMemory** durante os testes, isolando a suíte de testes de uma infraestrutura externa real[m
+\ No newline at end of file[m
+[32m+[m[32m### Conferência da entrega[m
+[32m+[m
+[32m+[m[32mAntes de enviar o link do GitHub, confirme que o README, `docs/swagger.json`, as migrações, as correções e os testes novos estão incluídos no commit e no push. Credenciais e user-secrets devem permanecer fora do repositório. Valide os passos de instalação em um clone limpo, com as próprias configurações de banco do avaliador.[m
+[32m+[m
+[32m+[m[32m## 🗂️ Estrutura da Solução[m
+[32m+[m
+[32m+[m[32m```[m
+[32m+[m[32mVitalPet Tech.sln[m
+[32m+[m[32m├── VitalPetTech.Domain/           Entidades, interfaces e tipos de filtro[m
+[32m+[m[32m├── VitalPetTech.Application/      Services, DTOs, HATEOAS (modelo) e exceções[m
+[32m+[m[32m├── VitalPetTech.Infrastructure/   EF Core, MongoDB, repositórios, migrações e segurança[m
+[32m+[m[32m├── VitalPet Tech.API/             Controllers, Program.cs, Swagger e Health Checks[m
+[32m+[m[32m├── VitalPetTech.Tests.Unit/       Testes unitários[m
+[32m+[m[32m├── VitalPetTech.Tests.Integration/ Testes de integração[m
+[32m+[m[32m└── docs/                          swagger.json exportado[m
+[32m+[m[32m```[m
+[1mdiff --git a/VitalPetTech.Infrastructure/Data/ApplicationContextFactory.cs b/VitalPetTech.Infrastructure/Data/ApplicationContextFactory.cs[m
+[1mindex 813ebe8..55acf7a 100644[m
+[1m--- a/VitalPetTech.Infrastructure/Data/ApplicationContextFactory.cs[m
+[1m+++ b/VitalPetTech.Infrastructure/Data/ApplicationContextFactory.cs[m
+[36m@@ -12,9 +12,10 @@[m [mpublic class ApplicationContextFactory : IDesignTimeDbContextFactory<Application[m
+             ?? "Data Source=localhost:1521/XEPDB1;User Id=design;Password=design;";[m
+ [m
+         var options = new DbContextOptionsBuilder<ApplicationContext>()[m
+[31m-            .UseOracle(connectionString)[m
+[32m+[m[32m            .UseOracle(connectionString,[m
+[32m+[m[32m                oracle => oracle.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19))[m
+             .Options;[m
+ [m
+         return new ApplicationContext(options);[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/VitalPetTech.Infrastructure/DependencyInjection.cs b/VitalPetTech.Infrastructure/DependencyInjection.cs[m
+[1mindex a9696ce..26e3827 100644[m
+[1m--- a/VitalPetTech.Infrastructure/DependencyInjection.cs[m
+[1m+++ b/VitalPetTech.Infrastructure/DependencyInjection.cs[m
+[36m@@ -16,7 +16,9 @@[m [mpublic static class DependencyInjection[m
+         this IServiceCollection services, string connectionString, JwtSettings jwt, MongoSettings mongo)[m
+     {[m
+         // Oracle (relacional)[m
+[31m-        services.AddDbContext<ApplicationContext>(options => options.UseOracle(connectionString));[m
+[32m+[m[32m        // Evita gerar BOOLEAN/TRUE/FALSE, indisponíveis no SQL do Oracle anterior ao 23c.[m
+[32m+[m[32m        services.AddDbContext<ApplicationContext>(options => options.UseOracle(connectionString,[m
+[32m+[m[32m            oracle => oracle.UseOracleSQLCompatibility(OracleSQLCompatibility.DatabaseVersion19)));[m
+ [m
+         services.AddScoped<ITutorRepository, TutorRepository>();[m
+         services.AddScoped<IPetRepository, PetRepository>();[m
+[36m@@ -43,4 +45,4 @@[m [mpublic static class DependencyInjection[m
+ [m
+         return services;[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/VitalPetTech.Infrastructure/VitalPetTech.Infrastructure.csproj b/VitalPetTech.Infrastructure/VitalPetTech.Infrastructure.csproj[m
+[1mindex 1dcb0e1..9a8e516 100644[m
+[1m--- a/VitalPetTech.Infrastructure/VitalPetTech.Infrastructure.csproj[m
+[1m+++ b/VitalPetTech.Infrastructure/VitalPetTech.Infrastructure.csproj[m
+[36m@@ -7,6 +7,7 @@[m
+ [m
+   <ItemGroup>[m
+     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />[m
+[32m+[m[32m    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.10" />[m
+     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">[m
+       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>[m
+       <PrivateAssets>all</PrivateAssets>[m
+[1mdiff --git a/VitalPetTech.Tests.Integration/Controllers/AuthControllerIntegrationTests.cs b/VitalPetTech.Tests.Integration/Controllers/AuthControllerIntegrationTests.cs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ec23ea5[m
+[1m--- /dev/null[m
+[1m+++ b/VitalPetTech.Tests.Integration/Controllers/AuthControllerIntegrationTests.cs[m
+[36m@@ -0,0 +1,55 @@[m
+[32m+[m[32musing System.Net;[m
+[32m+[m[32musing System.Net.Http.Headers;[m
+[32m+[m[32musing System.Net.Http.Json;[m
+[32m+[m[32musing VitalPetTech.Application.DTOs;[m
+[32m+[m[32musing VitalPetTech.Domain.Entities;[m
+[32m+[m[32musing VitalPetTech.Tests.Integration.Fixtures;[m
+[32m+[m[32musing VitalPetTech.Tests.Integration.Helpers;[m
+[32m+[m
+[32m+[m[32mnamespace VitalPetTech.Tests.Integration.Controllers;[m
+[32m+[m
+[32m+[m[32mpublic class AuthControllerIntegrationTests[m
+[32m+[m[32m{[m
+[32m+[m[32m    [Fact][m
+[32m+[m[32m    public async Task RegistrarELogin_ValidamBootstrapCredenciaisEAutorizacao()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        using var factory = new CustomWebApplicationFactory();[m
+[32m+[m[32m        using var client = factory.CreateClient();[m
+[32m+[m[32m        var request = new RegistrarRequest[m
+[32m+[m[32m        {[m
+[32m+[m[32m            Nome = "Administrador de teste", Email = "ADMIN@teste.com", Senha = "Senha@12345"[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        var registro = await client.PostAsJsonAsync("/api/Auth/registrar", request);[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.Created, registro.StatusCode);[m
+[32m+[m[32m        var admin = await registro.Content.ReadFromJsonAsync<UsuarioResponse>(ApiTestHelper.JsonOptions);[m
+[32m+[m[32m        Assert.Equal(PerfilUsuario.Admin, admin!.Perfil);[m
+[32m+[m[32m        Assert.Equal("admin@teste.com", admin.Email);[m
+[32m+[m
+[32m+[m[32m        var duplicado = await client.PostAsJsonAsync("/api/Auth/registrar", request);[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.UnprocessableEntity, duplicado.StatusCode);[m
+[32m+[m
+[32m+[m[32m        request.Email = "usuario@teste.com";[m
+[32m+[m[32m        var segundoRegistro = await client.PostAsJsonAsync("/api/Auth/registrar", request);[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.Created, segundoRegistro.StatusCode);[m
+[32m+[m[32m        var usuario = await segundoRegistro.Content.ReadFromJsonAsync<UsuarioResponse>(ApiTestHelper.JsonOptions);[m
+[32m+[m[32m        Assert.Equal(PerfilUsuario.Usuario, usuario!.Perfil);[m
+[32m+[m
+[32m+[m[32m        var login = await client.PostAsJsonAsync("/api/Auth/login",[m
+[32m+[m[32m            new LoginRequest { Email = admin.Email, Senha = request.Senha });[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.OK, login.StatusCode);[m
+[32m+[m[32m        var token = await login.Content.ReadFromJsonAsync<TokenResponse>(ApiTestHelper.JsonOptions);[m
+[32m+[m[32m        Assert.False(string.IsNullOrWhiteSpace(token!.AccessToken));[m
+[32m+[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/Tutor")).StatusCode);[m
+[32m+[m[32m        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/Tutor")).StatusCode);[m
+[32m+[m
+[32m+[m[32m        var senhaErrada = await client.PostAsJsonAsync("/api/Auth/login",[m
+[32m+[m[32m            new LoginRequest { Email = admin.Email, Senha = "senha-incorreta" });[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.Unauthorized, senhaErrada.StatusCode);[m
+[32m+[m[32m        request.Senha = "curta";[m
+[32m+[m[32m        Assert.Equal(HttpStatusCode.BadRequest,[m
+[32m+[m[32m            (await client.PostAsJsonAsync("/api/Auth/registrar", request)).StatusCode);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/VitalPetTech.Tests.Integration/Fixtures/CustomWebApplicationFactory.cs b/VitalPetTech.Tests.Integration/Fixtures/CustomWebApplicationFactory.cs[m
+[1mindex d4886bb..f2be25e 100644[m
+[1m--- a/VitalPetTech.Tests.Integration/Fixtures/CustomWebApplicationFactory.cs[m
+[1m+++ b/VitalPetTech.Tests.Integration/Fixtures/CustomWebApplicationFactory.cs[m
+[36m@@ -16,6 +16,7 @@[m [mpublic class CustomWebApplicationFactory : WebApplicationFactory<Program>[m
+ {[m
+     private readonly Dictionary<PerfilUsuario, string> _tokens = new();[m
+     private readonly object _lock = new();[m
+[32m+[m[32m    private readonly string _databaseName = $"VitalPetTestDb-{Guid.NewGuid():N}";[m
+ [m
+     public CustomWebApplicationFactory()[m
+     {[m
+[36m@@ -40,7 +41,7 @@[m [mpublic class CustomWebApplicationFactory : WebApplicationFactory<Program>[m
+                 services.Remove(descriptor);[m
+ [m
+             services.AddDbContext<ApplicationContext>(options =>[m
+[31m-                options.UseInMemoryDatabase("VitalPetTestDb"));[m
+[32m+[m[32m                options.UseInMemoryDatabase(_databaseName));[m
+             var mongoRepo = services.SingleOrDefault(d => d.ServiceType == typeof(ILeituraSensorRepository));[m
+             if (mongoRepo != null)[m
+                 services.Remove(mongoRepo);[m
+[36m@@ -92,4 +93,4 @@[m [mpublic class CustomWebApplicationFactory : WebApplicationFactory<Program>[m
+ [CollectionDefinition("API Integration Tests")][m
+ public class ApiCollection : ICollectionFixture<CustomWebApplicationFactory>[m
+ {[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/VitalPetTech.Tests.Unit/Repositories/OracleCompatibilityTests.cs b/VitalPetTech.Tests.Unit/Repositories/OracleCompatibilityTests.cs[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6fd7d2c[m
+[1m--- /dev/null[m
+[1m+++ b/VitalPetTech.Tests.Unit/Repositories/OracleCompatibilityTests.cs[m
+[36m@@ -0,0 +1,33 @@[m
+[32m+[m[32musing System.Text.RegularExpressions;[m
+[32m+[m[32musing Microsoft.EntityFrameworkCore;[m
+[32m+[m[32musing Microsoft.Extensions.DependencyInjection;[m
+[32m+[m[32musing VitalPetTech.Infrastructure;[m
+[32m+[m[32musing VitalPetTech.Infrastructure.Auth;[m
+[32m+[m[32musing VitalPetTech.Infrastructure.Data;[m
+[32m+[m[32musing VitalPetTech.Infrastructure.Mongo;[m
+[32m+[m
+[32m+[m[32mnamespace VitalPetTech.Tests.Unit.Repositories;[m
+[32m+[m
+[32m+[m[32mpublic class OracleCompatibilityTests[m
+[32m+[m[32m{[m
+[32m+[m[32m    [Theory][m
+[32m+[m[32m    [InlineData(false)][m
+[32m+[m[32m    [InlineData(true)][m
+[32m+[m[32m    public void ConsultaDeExistencia_NaoGeraLiteraisBooleanosDoOracle23(bool designTime)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        var services = new ServiceCollection();[m
+[32m+[m[32m        services.AddInfrastructure("Data Source=localhost:1521/FAKE;User Id=teste;Password=teste;",[m
+[32m+[m[32m            new JwtSettings(), new MongoSettings());[m
+[32m+[m[32m        using var provider = services.BuildServiceProvider();[m
+[32m+[m[32m        using var scope = provider.CreateScope();[m
+[32m+[m[32m        using var context = designTime[m
+[32m+[m[32m            ? new ApplicationContextFactory().CreateDbContext(Array.Empty<string>())[m
+[32m+[m[32m            : scope.ServiceProvider.GetRequiredService<ApplicationContext>();[m
+[32m+[m
+[32m+[m[32m        // Gera SQL com EXISTS sem abrir uma conexão com o banco.[m
+[32m+[m[32m        var sql = context.Usuarios.Select(u => context.Usuarios.Any(other => other.Id == u.Id)).ToQueryString();[m
+[32m+[m
+[32m+[m[32m        Assert.Contains("EXISTS", sql, StringComparison.OrdinalIgnoreCase);[m
+[32m+[m[32m        Assert.False(Regex.IsMatch(sql, @"\b(TRUE|FALSE)\b", RegexOptions.IgnoreCase), sql);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/docs/swagger.json b/docs/swagger.json[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2ec9f4b[m
+[1m--- /dev/null[m
+[1m+++ b/docs/swagger.json[m
+[36m@@ -0,0 +1,2214 @@[m
+[32m+[m[32m{[m
+[32m+[m[32m  "openapi": "3.0.4",[m
+[32m+[m[32m  "info": {[m
+[32m+[m[32m    "title": "VitalPet Tech API",[m
+[32m+[m[32m    "description": "API de saúde contínua do pet — FIAP Challenge 2026",[m
+[32m+[m[32m    "version": "v1"[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "paths": {[m
+[32m+[m[32m    "/api/Alerta": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Alerta"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Lista alertas com paginação, ordenação (timestamp, severidade, tipo, id) e filtros\r\npor pet, resolvido, severidade e tipo. Use ?resolvido=false para ver os pendentes.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PetId",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Resolvido",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "boolean"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Severidade",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Severidade"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "TipoAlerta",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Page",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PageSize",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "OrderBy",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Descending",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "boolean"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/AlertaResponsePagedResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Alerta"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/AlertaRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/AlertaRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/AlertaRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "201": {[m
+[32m+[m[32m            "description": "Created",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/AlertaResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Alerta/{id}": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Alerta"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/AlertaResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "put": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Alerta"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Atualiza um alerta (ideal para marcar como resolvido).",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/AlertaUpdateRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/AlertaUpdateRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/AlertaUpdateRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "delete": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Alerta"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Remove um alerta pelo ID.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Auth/registrar": {[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Auth"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Registra um novo usuário. O primeiro usuário do sistema recebe o perfil Admin; os demais, Usuario.",[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/RegistrarRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/RegistrarRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/RegistrarRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "201": {[m
+[32m+[m[32m            "description": "Created",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/UsuarioResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Auth/login": {[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Auth"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Autentica o usuário e devolve o token JWT para usar no header Authorization (Bearer).",[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/LoginRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/LoginRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/LoginRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/TokenResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "401": {[m
+[32m+[m[32m            "description": "Unauthorized",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/EventoClinico": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "EventoClinico"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Lista eventos clínicos com paginação, ordenação (data, tipo, clinica, id)\r\ne filtros por pet e tipo. Por padrão, do mais recente para o mais antigo.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PetId",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Tipo",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/TipoEvento"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Page",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PageSize",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "OrderBy",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Descending",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "boolean"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/EventoClinicoResponsePagedResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "EventoClinico"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/EventoClinicoRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/EventoClinicoRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/EventoClinicoRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "201": {[m
+[32m+[m[32m            "description": "Created",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/EventoClinicoResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/EventoClinico/{id}": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "EventoClinico"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/EventoClinicoResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "put": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "EventoClinico"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Atualiza um evento clínico existente.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/EventoClinicoRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/EventoClinicoRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/EventoClinicoRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "delete": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "EventoClinico"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Remove um evento clínico pelo ID.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/LeituraSensor": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "LeituraSensor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Lista leituras dos sensores (MongoDB) com paginação, ordenação (timestamp, valor, tipo)\r\ne filtros por pet, tipo e período. Por padrão, da mais recente para a mais antiga.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PetId",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Tipo",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "De",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string",[m
+[32m+[m[32m              "format": "date-time"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Ate",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string",[m
+[32m+[m[32m              "format": "date-time"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Page",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PageSize",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "OrderBy",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Descending",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "boolean"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/LeituraSensorResponsePagedResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "LeituraSensor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Registra uma leitura de sensor IoT. O pet informado precisa existir.",[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/LeituraSensorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/LeituraSensorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/LeituraSensorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "201": {[m
+[32m+[m[32m            "description": "Created",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/LeituraSensorResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/LeituraSensor/{id}": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "LeituraSensor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Retorna uma leitura pelo ID.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/LeituraSensorResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Pet": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Pet"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Lista pets com paginação, ordenação (id, nome, especie, peso, dataNascimento)\r\ne filtros por espécie e tutor.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Especie",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "TutorId",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Page",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PageSize",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "OrderBy",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Descending",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "boolean"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/PetResponsePagedResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Pet"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/PetRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/PetRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/PetRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "201": {[m
+[32m+[m[32m            "description": "Created",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/PetResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Pet/{id}": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Pet"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/PetResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "put": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Pet"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Atualiza os dados de um pet existente.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/PetRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/PetRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/PetRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "422": {[m
+[32m+[m[32m            "description": "Unprocessable Content",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "delete": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Pet"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Remove um pet pelo ID.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Tutor": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Tutor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Lista tutores com paginação, ordenação (id, nome) e filtro por nome.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Nome",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Page",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "PageSize",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "OrderBy",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "string"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "Descending",[m
+[32m+[m[32m            "in": "query",[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "boolean"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/TutorResponsePagedResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "post": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Tutor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/TutorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/TutorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/TutorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "201": {[m
+[32m+[m[32m            "description": "Created",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/TutorResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "/api/Tutor/{id}": {[m
+[32m+[m[32m      "get": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Tutor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "200": {[m
+[32m+[m[32m            "description": "OK",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/TutorResponse"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "put": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Tutor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Atualiza os dados de um tutor existente.",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "requestBody": {[m
+[32m+[m[32m          "content": {[m
+[32m+[m[32m            "application/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/TutorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "text/json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/TutorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "application/*+json": {[m
+[32m+[m[32m              "schema": {[m
+[32m+[m[32m                "$ref": "#/components/schemas/TutorRequest"[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "400": {[m
+[32m+[m[32m            "description": "Bad Request",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "delete": {[m
+[32m+[m[32m        "tags": [[m
+[32m+[m[32m          "Tutor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "summary": "Remove um tutor (e, em cascata, seus pets, eventos e alertas).",[m
+[32m+[m[32m        "parameters": [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            "name": "id",[m
+[32m+[m[32m            "in": "path",[m
+[32m+[m[32m            "required": true,[m
+[32m+[m[32m            "schema": {[m
+[32m+[m[32m              "type": "integer",[m
+[32m+[m[32m              "format": "int32"[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "responses": {[m
+[32m+[m[32m          "204": {[m
+[32m+[m[32m            "description": "No Content"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "404": {[m
+[32m+[m[32m            "description": "Not Found",[m
+[32m+[m[32m            "content": {[m
+[32m+[m[32m              "application/json": {[m
+[32m+[m[32m                "schema": {[m
+[32m+[m[32m                  "$ref": "#/components/schemas/ProblemDetails"[m
+[32m+[m[32m                }[m
+[32m+[m[32m              }[m
+[32m+[m[32m            }[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      }[m
+[32m+[m[32m    }[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "components": {[m
+[32m+[m[32m    "schemas": {[m
+[32m+[m[32m      "AlertaRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "timestamp"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "tipoAlerta": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "valor": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "latitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "longitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "severidade": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/Severidade"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "timestamp": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "maximum": 2147483647,[m
+[32m+[m[32m            "minimum": 1,[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "AlertaResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "tipoAlerta": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "valor": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "latitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "longitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "severidade": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/Severidade"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "resolvido": {[m
+[32m+[m[32m            "type": "boolean"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "timestamp": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nomePet": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "AlertaResponsePagedResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "items": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/AlertaResponse"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "page": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pageSize": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalCount": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalPages": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "AlertaUpdateRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "timestamp"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "tipoAlerta": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "valor": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "latitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "longitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "severidade": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/Severidade"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "timestamp": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "maximum": 2147483647,[m
+[32m+[m[32m            "minimum": 1,[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "resolvido": {[m
+[32m+[m[32m            "type": "boolean"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "EventoClinicoRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "clinica",[m
+[32m+[m[32m          "dataEvento",[m
+[32m+[m[32m          "descricao"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "tipo": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoEvento"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "dataEvento": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "clinica": {[m
+[32m+[m[32m            "maxLength": 100,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "descricao": {[m
+[32m+[m[32m            "maxLength": 500,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "proximoRetorno": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "maximum": 2147483647,[m
+[32m+[m[32m            "minimum": 1,[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "EventoClinicoResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "tipo": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoEvento"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "dataEvento": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "clinica": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "descricao": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "proximoRetorno": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nomePet": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "EventoClinicoResponsePagedResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "items": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/EventoClinicoResponse"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "page": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pageSize": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalCount": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalPages": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "LeituraSensorRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "timestamp"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "maximum": 2147483647,[m
+[32m+[m[32m            "minimum": 1,[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "tipo": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "valor": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "latitude": {[m
+[32m+[m[32m            "maximum": 90,[m
+[32m+[m[32m            "minimum": -90,[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "longitude": {[m
+[32m+[m[32m            "maximum": 180,[m
+[32m+[m[32m            "minimum": -180,[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "timestamp": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "LeituraSensorResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idPet": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "tipo": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/TipoAlerta"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "valor": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "latitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "longitude": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "timestamp": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "LeituraSensorResponsePagedResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "items": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/LeituraSensorResponse"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "page": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pageSize": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalCount": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalPages": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Link": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "href": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "rel": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "method": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "LoginRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "email",[m
+[32m+[m[32m          "senha"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "email": {[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "email"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "senha": {[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "PerfilUsuario": {[m
+[32m+[m[32m        "enum": [[m
+[32m+[m[32m          "Usuario",[m
+[32m+[m[32m          "Admin"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "string"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "PetRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "dataNascimento",[m
+[32m+[m[32m          "especiePet",[m
+[32m+[m[32m          "nome"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "nome": {[m
+[32m+[m[32m            "maxLength": 100,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "dataNascimento": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pesoPet": {[m
+[32m+[m[32m            "maximum": 100,[m
+[32m+[m[32m            "minimum": 0.1,[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "especiePet": {[m
+[32m+[m[32m            "maxLength": 50,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idTutor": {[m
+[32m+[m[32m            "maximum": 2147483647,[m
+[32m+[m[32m            "minimum": 1,[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "PetResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nome": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "dataNascimento": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pesoPet": {[m
+[32m+[m[32m            "type": "number",[m
+[32m+[m[32m            "format": "double"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "especiePet": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "idTutor": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nomeTutor": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "PetResponsePagedResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "items": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/PetResponse"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "page": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pageSize": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalCount": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalPages": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "PetResumoResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nome": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "especiePet": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "ProblemDetails": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "type": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "title": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "status": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "detail": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "instance": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": { }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "RegistrarRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "email",[m
+[32m+[m[32m          "nome",[m
+[32m+[m[32m          "senha"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "nome": {[m
+[32m+[m[32m            "maxLength": 100,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "email": {[m
+[32m+[m[32m            "maxLength": 150,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "email"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "senha": {[m
+[32m+[m[32m            "maxLength": 100,[m
+[32m+[m[32m            "minLength": 8,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Severidade": {[m
+[32m+[m[32m        "enum": [[m
+[32m+[m[32m          "Info",[m
+[32m+[m[32m          "Atencao",[m
+[32m+[m[32m          "Critico"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "string"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "TipoAlerta": {[m
+[32m+[m[32m        "enum": [[m
+[32m+[m[32m          "Batimento",[m
+[32m+[m[32m          "Temperatura",[m
+[32m+[m[32m          "Localizacao"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "string"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "TipoEvento": {[m
+[32m+[m[32m        "enum": [[m
+[32m+[m[32m          "Consulta",[m
+[32m+[m[32m          "Vacina",[m
+[32m+[m[32m          "Exame",[m
+[32m+[m[32m          "Cirurgia",[m
+[32m+[m[32m          "Retorno",[m
+[32m+[m[32m          "Medicamento"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "string"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "TokenResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "accessToken": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "tokenType": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "expiraEm": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "format": "date-time"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "perfil": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/PerfilUsuario"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "TutorRequest": {[m
+[32m+[m[32m        "required": [[m
+[32m+[m[32m          "cpfTutor",[m
+[32m+[m[32m          "enderecoTutor",[m
+[32m+[m[32m          "nomeTutor",[m
+[32m+[m[32m          "telefoneTutor"[m
+[32m+[m[32m        ],[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "nomeTutor": {[m
+[32m+[m[32m            "maxLength": 200,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "cpfTutor": {[m
+[32m+[m[32m            "maxLength": 14,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "telefoneTutor": {[m
+[32m+[m[32m            "maxLength": 15,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "enderecoTutor": {[m
+[32m+[m[32m            "maxLength": 200,[m
+[32m+[m[32m            "minLength": 1,[m
+[32m+[m[32m            "type": "string"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "TutorResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nomeTutor": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "cpfTutor": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "telefoneTutor": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "enderecoTutor": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pets": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/PetResumoResponse"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "TutorResponsePagedResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "items": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/TutorResponse"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "page": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "pageSize": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalCount": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "totalPages": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "links": {[m
+[32m+[m[32m            "type": "array",[m
+[32m+[m[32m            "items": {[m
+[32m+[m[32m              "$ref": "#/components/schemas/Link"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "UsuarioResponse": {[m
+[32m+[m[32m        "type": "object",[m
+[32m+[m[32m        "properties": {[m
+[32m+[m[32m          "id": {[m
+[32m+[m[32m            "type": "integer",[m
+[32m+[m[32m            "format": "int32"[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "nome": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "email": {[m
+[32m+[m[32m            "type": "string",[m
+[32m+[m[32m            "nullable": true[m
+[32m+[m[32m          },[m
+[32m+[m[32m          "perfil": {[m
+[32m+[m[32m            "$ref": "#/components/schemas/PerfilUsuario"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "additionalProperties": false[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "securitySchemes": {[m
+[32m+[m[32m      "Bearer": {[m
+[32m+[m[32m        "type": "http",[m
+[32m+[m[32m        "description": "Informe apenas o token JWT (obtido em POST /api/Auth/login).",[m
+[32m+[m[32m        "scheme": "bearer",[m
+[32m+[m[32m        "bearerFormat": "JWT"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    }[m
+[32m+[m[32m  },[m
+[32m+[m[32m  "security": [[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "Bearer": [ ][m
+[32m+[m[32m    }[m
+[32m+[m[32m  ],[m
+[32m+[m[32m  "tags": [[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "Alerta"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "Auth"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "EventoClinico"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "LeituraSensor"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "Pet"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "name": "Tutor"[m
+[32m+[m[32m    }[m
+[32m+[m[32m  ][m
+[32m+[m[32m}[m
+\ No newline at end of file[m

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VitalPetTech.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82e09a11214ae315629e700179bcc97bf40f684b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65e4322a6ee3cd479ea200cba3b3d94871b6a19d")]
 [assembly: System.Reflection.AssemblyProductAttribute("VitalPetTech.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VitalPetTech.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
