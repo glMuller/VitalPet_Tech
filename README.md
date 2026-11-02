@@ -24,6 +24,11 @@ Nesta versão final, o projeto consolida todas as sprints:
 
 O projeto segue a Clean Architecture. As dependências sempre apontam para dentro: a camada de domínio não conhece nenhuma das outras.
 
+
+
+<details>
+<summary>Diagrama em Mermaid</summary>
+
 ```mermaid
 flowchart LR
     Cliente([Cliente HTTP / Swagger]) --> API
@@ -44,6 +49,8 @@ flowchart LR
     INF --> ORA[(Oracle<br/>dados relacionais)]
     INF --> MONGO[(MongoDB<br/>leituras de sensores)]
 ```
+
+</details>
 
 | Camada | Responsabilidade |
 |---|---|
